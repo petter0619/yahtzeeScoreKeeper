@@ -12,10 +12,57 @@
     </style>
 </head>
 <body>
-    <p>Hello world!</p>
+    <div>
+        <h3>Lab: Disabling / removing options from FORM dropdown...</h3>
+        <form class="testForm">
+            <select name="test" id="test">
+                <option style="display: none;"></option> <!-- Makes first form optiion blank -->
+                <option value="1">Ones</option>
+                <option value="2">Twos</option>
+                <option value="3">Threes</option>
+                <option value="4">Fours</option>
+                <option value="5">Fives</option>
+                <option value="6">Sixes</option>
+            </select>
+            <button type="submit">Disable option</button>
+        </form>
+    </div>
     <!-- Javascript -->
     <script>
-        console.log('It works!');
+        //Lab: Disabling / removing options from FORM dropdown...
+        const testForm = document.querySelector('.testForm');
+        testForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const disable = testForm.querySelector(`option[value="${e.currentTarget.test.value}"]`);
+            if(disable.getAttribute('disabled')) {
+                disable.removeAttribute('disabled');
+            }
+            disable.setAttribute('disabled', 'true');
+            disable.setAttribute('style', 'display: none;');
+            testForm.reset(); // Resets form to show the first value
+        });
+
+        //Dynamically referencing objects... (if you put them in order, in an array, player1 will always be at index 0, player2 at index 1, etc....)
+        const object1 = {objKey: 1,};
+        const object2 = {objKey: 2,};
+        const objArray = [object1, object2];
+        /*
+            Use simple IF statement to decide which object to use? E.g. qs('.currentPlayer') => data-player="player1" => IF(!item.getAttribute('data-player', 'player1') === currentPlayer.qs(attr)) {return;}
+
+            Solution: Use array + [ indexNumber ] to do it (indexNumber can be a calculation e.g. 1 - 1 = index 0)
+            So use ".currentPlayer" to grab the static (+ always present) attribute data-playerNumber="1" value (turn it into a number if necessary) and then subtract 1 to reference the player1 object
+        */
+        console.log(objArray[0].objKey);
+        const word = 'objKey';
+        console.log(object2[word], object2[`${word}`])
+
+        const objName = eval('object2'); // Using eval() I can turn a string with an object name INTO an objectReference!!! NOTE: eval() is a security risk!
+        console.log(objName.objKey);
+
+        console.log( objArray[ 1 - 1 ].objKey ); // playerArray[ data-player="(num)" - 1 = playerObjRef ].property/method
+        
+
+
     </script>
 </body>
 </html>
