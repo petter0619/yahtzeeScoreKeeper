@@ -29,7 +29,7 @@
     </div>
     <!-- Javascript -->
     <script>
-        //Lab: Disabling / removing options from FORM dropdown...
+        // ----------> Lab: Disabling / removing options from FORM dropdown... ------------------------------------------------------------------------------------------
         const testForm = document.querySelector('.testForm');
         testForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -42,7 +42,7 @@
             testForm.reset(); // Resets form to show the first value
         });
 
-        //Dynamically referencing objects... (if you put them in order, in an array, player1 will always be at index 0, player2 at index 1, etc....)
+        // ----------> Dynamically referencing objects... (if you put them in order, in an array, player1 will always be at index 0, player2 at index 1, etc....) ------------------------------------------------------------------------------------------
         const object1 = {objKey: 1,};
         const object2 = {objKey: 2,};
         const objArray = [object1, object2];
@@ -61,7 +61,35 @@
 
         console.log( objArray[ 1 - 1 ].objKey ); // playerArray[ data-player="(num)" - 1 = playerObjRef ].property/method
         
+        // ----------> Array inside objects tests ------------------------------------------------------------------------------------------
+        const objWithArray = {
+            name: 'objWithArray',
+            array: [],
+            null: null,
+        }
+        // objWithArray.array.push( ['item1','item2'] ) = you get a nested Array (so an array with 1 nestedArray)
+        // objWithArray.null = ['item1','item2'] = property 'null' becomes 1 array with 2 arrayItems =====> Set this.onesResults, etc as null in initial object, then add diceResult array
+        // Array in variable, then passing variable works...
+        // Altering the diceResultArray with .splice() or just resetting it with "=" does NOT seem to alter the diceResultArray inside the objWithArray.null... seems to send a copy (obv. test this in app)
 
+        console.log(objWithArray);
+
+        // ----------> Filling empty array alternatives ------------------------------------------------------------------------------------------
+        
+        let filledArray = new Array(10);
+        console.log('filledArray start:',filledArray);
+        for(let i = 0; i < 10; i++) {filledArray[i] = 'test'}
+        console.log('filledArray after:',filledArray);
+
+
+        let emptyArray = new Array(5).fill(null); // Filled w. 'null'
+        console.log('emptyArray start:',emptyArray);
+        emptyArray.forEach( (item, index, array) => {
+            array[index] = 'test';
+        });
+        console.log('emptyArray after:',emptyArray);
+        emptyArray = new Array(5).fill(null);
+        console.log('emptyArray reset:',emptyArray); // Reset
 
     </script>
 </body>
