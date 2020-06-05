@@ -73,32 +73,39 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1rem;
 }
 
-.topnav button {
+.topnav #navLinks {
+    float: right;
+}
+
+.topnav button, .topnav a {
     color: white;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
     background-color: #333;
     border-radius: 0;
-    float: right;
 }
 
-.topnav button:hover {
+.topnav button:hover, .topnav a:hover {
     background-color: #ddd;
     color: black;
 }
 
-.topnav button.icon {
+.topnav button.icon, .topnav a.icon {
     display: none;
 }
 
-.topnav button.icon:hover {
+.topnav button.icon:hover, .topnav a.icon:hover {
     background-color: white;
     color: black;
 }
 
 .topnav #navEndGameButton {
     display: none;
+}
+
+.topnav .fa-github {
+    font-size: 20px;
 }
 
 
@@ -162,7 +169,6 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--pink);
 }
 
-
 /* -------------------------- //#startScreen -------------------------- */
 
 
@@ -206,6 +212,19 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(0);
 }
 
+.modal-inner #closeModalIcon {
+    color: red;
+    font-size: 0.5em;
+    float: right;
+    clear: both;
+    padding: 1px 5px;
+    border-radius: 5px;
+}
+
+.modal-inner #closeModalIcon:hover {
+    color: white;
+    background: red;
+}
 
 /* -------------------------- //.modals -------------------------- */
 
@@ -247,6 +266,7 @@ h1, h2, h3, h4, h5, h6 {
 
     .topnav #navLinks {
         display: none;
+        float: none;
     }
 
     .topnav #navLogo {
@@ -257,7 +277,6 @@ h1, h2, h3, h4, h5, h6 {
 
     .topnav .navLink {
         clear:both;
-        float: none;
         display: block;
         width: 100%;
         text-align: left;
@@ -274,6 +293,11 @@ h1, h2, h3, h4, h5, h6 {
     .topnav #navStartGameButton {
         background-color: #4CAF50;
         color: white;
+    }
+
+    .topnav #navStartGameButton:hover {
+        background-color: white;
+        color: #4CAF50;
     }
 
 }
