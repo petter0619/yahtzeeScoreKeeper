@@ -251,7 +251,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* -------------------------- //.modals -------------------------- */
 
-/* -------------------------- startPlaying / addPlayers modal content -------------------------- */
+/* -------------------------- startPlaying => addPlayers modal content -------------------------- */
 
 .modal-inner > div[role=startPlaying] {
     max-width: 550px;
@@ -269,6 +269,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .addPlayer > button {
     font-size: 1.5rem;
+    margin-left: 5px;
 }
 
 .addPlayer > input {
@@ -306,6 +307,7 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1rem;
     cursor: pointer;
     transition: transform 0.2s;
+    width: 40px;
 }
   
 .player button:hover {
@@ -407,9 +409,23 @@ h1, h2, h3, h4, h5, h6 {
         display: none;
     }
     
+    /* Modal */
+
+    .modal-inner {
+        min-width: 0;
+        padding: 1.5rem 0.6rem;
+    }
+
+    .modal-inner > div[role=startPlaying], .modal-inner > div[role=yahtzeeRules] {
+        max-width: 90vw; /* 280px */
+    }
+    
+    .modal-inner div > p {
+        font-size: 0.5em;
+    }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 440px) {
 
     /* Start Screen */
 
@@ -438,6 +454,22 @@ h1, h2, h3, h4, h5, h6 {
     #startScreen .yahtzeeRulesButton, #startScreen .howSiteWorksButton {
         width: 170px;
         font-size: 1.2rem;
+    }
+
+    /* startPlaying => addPlayers modal content */
+    .addPlayerList {
+        max-width: 80vw;
+    }
+
+    .addPlayer {
+        grid-template-columns: auto;
+        grid-template-rows: repeat(2, auto);
+    }
+
+    .addPlayer > button {
+        font-size: 1rem;
+        margin-left: 0;
+        margin-top: 5px;
     }
 
 }
