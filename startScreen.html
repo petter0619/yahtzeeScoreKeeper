@@ -54,9 +54,16 @@
     <div class="modal-outer">
         <div class="modal-inner">
             <span id="closeModalIcon"><i class="far fa-window-close"></i> Close</span>
-            <br>
             <div role="startPlaying">
-                Start Playing Modal
+                <p>Before you start the game, enter the names of each player into the box below and click the button to add them to the game.</p>
+                <div class="addPlayerList">
+                    <form class="addPlayer" autocomplete="off">
+                      <input type="text" name="playerName" id="item" required>
+                      <button type="submit">+ Add Player</button>
+                    </form>
+                
+                    <ul class="playersAdded"></ul>
+                </div>
             </div>
             <div role="yahtzeeRules">
                 Yahtzee Rules Modal

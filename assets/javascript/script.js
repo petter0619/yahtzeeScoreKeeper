@@ -13,9 +13,15 @@ const modalOuter = document.querySelector('.modal-outer');
 const modalButtons = document.querySelectorAll('.modalButton');
 const closeModalIcon = modalInner.querySelector('#closeModalIcon');
 
+// startPlaying Modal => Add Players List
+const addPlayerList = document.querySelector('.addPlayer');
+const list = document.querySelector('.playersAdded');
+let playersList = []; // Create empty array to hold our 'state'
+
 
 /* ---------------------- Function Definitions ---------------------- */
 
+// ----------------> Top Navigation Functions
 /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
 function toggleMobileMenu() {
     const navLinks = document.getElementById('navLinks');
@@ -26,13 +32,15 @@ function toggleMobileMenu() {
     }
 }
 
+
+// ----------------> Modal Functions
 // Open modal
 function openModal(event) {
     // Show the modal
     modalOuter.classList.add('open');
 
     //Hide all modalInner div's
-    modalInner.querySelectorAll(`div`).forEach(div => div.setAttribute('style', 'display:none;'));
+    modalInner.querySelectorAll(`.modal-inner > div`).forEach(div => div.setAttribute('style', 'display:none;'));
 
     //Show the div that matches the button
     const buttonRole = event.currentTarget.getAttribute('role');
@@ -54,13 +62,63 @@ function closeModal(event) {
     }
 }
 
+// ----------------> startPlaying Modal => Add Players List Functions
+
+function handleSubmit(e) {
+    // Prevent formSubmit from changing URL
+    e.preventDefault();
+    // Grab the value of the input
+    const name = e.currentTarget.playerName.value;
+    // IF input is empty string, don't submit it
+    if(!name) {return};
+    // Store the input value + itemId in the 'items' array
+    const player = {
+        name: name,
+        id: Date.now(),
+    }
+    // Push the items into our state
+    playersList.push(player);
+    // Clear the form
+    e.target.reset(); 
+    // Fire off custom event for items being updated
+    list.dispatchEvent(new CustomEvent('playersUpdated'));
+}
+
+function displayPlayer() {
+    const html = playersList.map(player => { 
+        return `<li class="player"> 
+            <span class="playerName">${player.name}</span>
+            <button aria-label="Remove ${player.name}" value="${player.id}">&times;</button>
+        </li>`;
+    }).join('');
+    list.innerHTML = html;
+}
+
+function deletePlayer(id) {
+    // Update items array without item with argument ID
+    playersList = playersList.filter(player => player.id !== id);
+    list.dispatchEvent(new CustomEvent('playersUpdated'));
+}
+
 /* ---------------------- Event Listeners ---------------------- */
 
-// Top Navigation
+// ----------------> Top Navigation
 mobileMenuIcon.addEventListener('click', toggleMobileMenu);
 
-// Open Modals
+// ----------------> Open Modals
 modalButtons.forEach(button => button.addEventListener('click', openModal))
+
+// ----------------> startPlaying Modal => Add Players List
+addPlayerList.addEventListener('submit', handleSubmit);
+list.addEventListener('playersUpdated', displayPlayer); 
+// Event delegation: listen for the click on the <ul> but delegate the event to the button (IF statement); if that is what was clicked
+list.addEventListener('click', function (e) { 
+    const id = parseInt(e.target.value);
+    // Listening for event on the list, but don't to anything unless click was on a button (in the list)
+    if(e.target.matches('button')) {
+        deletePlayer(id); // ID is placed on button via interpelation
+    }
+});
 
 
 
