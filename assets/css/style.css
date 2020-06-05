@@ -36,9 +36,14 @@ a.button, button, input[type="button"] {
     border-radius: 10px;
 }
 
+a.button:hover, button:hover, input[type="button"]:hover {
+    background-color: var(--yellow);
+    color: var(--pink);
+}
+
 h1, h2, h3, h4, h5, h6 {
   color: white;
-  margin-top: 0;
+  margin: 0;
   line-height: 1;
   text-shadow: var(--text-shadow);
 }
@@ -164,11 +169,6 @@ h1, h2, h3, h4, h5, h6 {
     width: 270px;
 }
 
-#startScreen .yahtzeeRulesButton:hover, #startScreen .howSiteWorksButton:hover {
-    background-color: var(--yellow);
-    color: var(--pink);
-}
-
 /* -------------------------- //#startScreen -------------------------- */
 
 
@@ -198,14 +198,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .modal-inner {
-    max-width: 600px;
     min-width: 400px;
     padding: 2rem;
     border-radius: 5px;
     min-height: 200px;
+    max-height: 80vh;
     background: white;
     transform: translateY(-200%);
     transition: transform 2s;
+
+    overflow-y: scroll;
+    /* Hide scrollbar for IE and Edge */
+    -ms-overflow-style: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.modal-inner::-webkit-scrollbar {
+    display: none;
 }
 
 .modal-outer.open .modal-inner {
@@ -227,17 +236,30 @@ h1, h2, h3, h4, h5, h6 {
     clear: both;
 }
 
+.modal-inner div > h5, .modal-inner div > h6 {
+    color: black;
+    text-decoration: underline;
+}
+
+.modal-inner div > p {
+    font-size: 0.7em;
+}
+
+.modal-inner div > img {
+    max-width: 100%;
+}
+
 /* -------------------------- //.modals -------------------------- */
 
 /* -------------------------- startPlaying / addPlayers modal content -------------------------- */
 
-.modal-inner div[role=startPlaying] {
-    
+.modal-inner > div[role=startPlaying] {
+    max-width: 550px;
 }
 
-.modal-inner div[role=startPlaying] > p {
-    text-align: left;
-    font-size: 0.7em;
+
+.modal-inner > div[role=yahtzeeRules] {
+    max-width: 600px;
 }
 
 .addPlayer {
@@ -268,7 +290,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
 }
 
-/* For the items added.....  */
+/* For when the items added.....  */
 .player {
     padding: 1rem 0;
     display: grid;
