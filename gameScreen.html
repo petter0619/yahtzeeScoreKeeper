@@ -4,11 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yahtzee Score Keeper - Game Screen</title>
-    <!-- Load an icon library to show a hamburger menu (bars) on small screens -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <script src="https://kit.fontawesome.com/b7e26214dd.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
+    <style>
 
+        /* ----------------------- Dice Area ----------------------- */
+
+        #diceArea {
+            border: 2px dotted black;
+
+            margin: 3rem auto;
+
+            display: grid;
+            grid-template-columns: repeat(5, auto);
+            justify-content: center;
+            grid-gap: 50px;
+        }
+
+        .diceBlock {
+            display: grid;
+            justify-content: center;
+        }
+
+        .diceHolder {
+            background-color: var(--yellow);
+            color: black;
+            border-radius: 10px;
+            width: 125px;
+            height: 125px;
+            line-height: 125px;
+            text-align: center;
+            font-size: 85px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 10px 0;
+
+            border: 5px solid black;
+        }
+
+        .diceHolder img {
+            width: 100%;
+        }
+
+
+        /* ----------------------- Score Area ----------------------- */
+
+        #scoreArea {
+            max-width: 90vw;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 0 3px 5px rgba(0,0,0,0.08653);
+        }
+ 
+        /* Tabs */ 
+        .tabs {
+            display: grid;
+        }
+
+        [role="tablist"] {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+            grid-gap: 10px;
+        }
+
+        [role="tabpanel"] {
+            background: var(--yellow);
+            padding: 2rem;
+        }
+
+        button[role="tab"] {
+            background: var(--grey);
+            border: 0;
+            color: black;
+            border-radius: 5px 5px 0 0;
+            --bs-color: rgba(0,0,0,0.1);
+            box-shadow: inset 0 -2px 5px var(--bs-color);
+            cursor:pointer;
+        }
+
+        button[aria-selected="true"] {
+            background: var(--yellow);
+            box-shadow: none;
+            color: rgba(0,0,0,0.7);
+        }
+
+        button:hover {
+            outline: 0;
+            --bs-color: rgba(0,0,0,0.6);
+            background: var(--yellow);
+        }
+    </style>
 </head>
 <body>
     <!-- Top Navigation Menu -->
@@ -23,10 +109,11 @@
             <span>E</span>
         </div>
         <div id="navLinks">
-            <button class="navLink">Yahtzee Rules</button>
-            <button class="navLink">How This Site Works</button>
-            <button class="navLink" id="navStartGameButton">Start Game</button>
+            <button class="navLink modalButton startPlayingButton" id="navStartGameButton" role="startPlaying">Start Playing</button>
             <button class="navLink" id="navEndGameButton">End Game</button>
+            <button class="navLink modalButton yahtzeeRulesButton" role="yahtzeeRules">Yahtzee Rules</button>
+            <button class="navLink modalButton howSiteWorksButton" role="howSiteWorks">How This Site Works</button>
+            <a href="https://github.com/petter0619/yahtzeeScoreKeeper_repo" target="_blank" class="navLink"><i class="fab fa-github"></i></a>
         </div>
         <button class="icon">
             <i class="fa fa-bars"></i>
@@ -34,7 +121,125 @@
     </nav>
     <!-- //.endTopNavigationMenu -->
 
+    <div id="diceArea">
+        <div class="diceBlock">
+            <div class="diceHolder">
+                <img src="./assets/media/images/dice6.png" alt="">
+            </div>
+            <button>Lock</button>
+        </div>
+        <div class="diceBlock">
+            <div class="diceHolder">
+                <img src="./assets/media/images/dice2.png" alt="">
+            </div>
+            <button>Lock</button>
+        </div>
+        <div class="diceBlock">
+            <div class="diceHolder">
+                <img src="./assets/media/images/dice3.png" alt="">
+            </div>
+            <button>Lock</button>
+        </div>
+        <div class="diceBlock">
+            <div class="diceHolder">
+                <img src="./assets/media/images/dice4.png" alt="">
+            </div>
+            <button>Lock</button>
+        </div>
+        <div class="diceBlock">
+            <div class="diceHolder">
+                <img src="./assets/media/images/dice5.png" alt="">
+            </div>
+            <button>Lock</button>
+        </div>
+    </div>
+
+    <div id="rollDiceSection">
+        <button>Roll Dice</button>
+    </div>
     
+    <div id="saveRollResultSection">
+        <button>Save Result</button>
+    </div>
+
+    <div id="scoreArea">
+        <div class="tabs">
+
+            <div role="tablist" aria-label="Programming Languages">
+                <button role="tab" aria-selected="false" id="player1">
+                    --- Player 1 Name ---
+                </button>
+                <button role="tab" aria-selected="false" id="player2">
+                    --- Player 4 Name ---
+                </button>
+                <button role="tab" aria-selected="false" id="player3">
+                    --- Player 3 Name ---
+                </button>
+                <button role="tab" aria-selected="false" id="player4">
+                    --- Player 4 Name ---
+                </button>
+                <button role="tab" aria-selected="false" id="player5">
+                    --- Player 5 Name ---
+                </button>
+            </div>
+
+            <div role="tabpanel" aria-labelledby="player1" hidden>
+                <p>--- Scores go here ---</p>
+            </div>
+            <div role="tabpanel" aria-labelledby="player2" hidden>
+                <p>--- Scores go here ---</p>
+            </div>
+            <div role="tabpanel" aria-labelledby="player3" hidden>
+                <p>--- Scores go here ---</p>
+            </div>
+            <div role="tabpanel" aria-labelledby="player4" hidden>
+                <p>--- Scores go here ---</p>
+            </div>
+            <div role="tabpanel" aria-labelledby="player5" hidden>
+                <p>--- Scores go here ---</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Grab the tabs wrapper
+        const tabsWrapper = document.querySelector('.tabs');
+
+        // Use tabs wrapper const to grab tabbuttons (role?)
+        const tabsButtons = Array.from(tabsWrapper.querySelectorAll('[role="tab"]'));
+
+        // Use tabs to grab tabsindex (role)
+        const tabsPanels = Array.from(tabsWrapper.querySelectorAll('[role="tabpanel"]'));
+
+        // Write handeTabButtonClick function:
+        function handleTabButtonClick(event) {
+            // Make all tabindex divs "hidden"
+            tabsPanels.forEach(tabPanel => {
+                tabPanel.hidden = true;
+            });
+
+            // Make all tabButtons ariaSelected: false
+            tabsButtons.forEach(tabButton => {
+                tabButton.setAttribute('aria-selected', false);
+            });
+
+            // Add ariaSelected: true to clicked button
+            event.currentTarget.setAttribute('aria-selected', true);
+
+            // Remove "hidden" from matching tabIndex
+            const tabButtonId = event.currentTarget.getAttribute('id');
+
+            // Method 2
+            const tabPanel = tabsPanels.find(
+                panel => panel.getAttribute('aria-labelledby') === tabButtonId
+            );
+            tabPanel.hidden = false;
+        }
+
+        // Use forEach() to add eventListener to all buttons, cbFunction: handleTabButtonClick
+        tabsButtons.forEach(button => button.addEventListener('click', handleTabButtonClick));
+    </script>
 
 </body>
 </html>

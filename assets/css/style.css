@@ -241,8 +241,12 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: underline;
 }
 
-.modal-inner div > p {
+.modal-inner div > p, .modal-inner div li {
     font-size: 0.7em;
+}
+
+.modal-inner div ul {
+    margin-top: 0;
 }
 
 .modal-inner div > img {
@@ -314,6 +318,15 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.4);
 }
 
+/* -------------------------- Dice Area -------------------------- */
+/* -------------------------- //.diceArea -------------------------- */
+
+
+/* -------------------------- Score Area -------------------------- */
+
+
+
+/* -------------------------- //.scoreArea -------------------------- */
 
 
 /* -------------------------- MEDIA QUERIES -------------------------- */
@@ -420,7 +433,7 @@ h1, h2, h3, h4, h5, h6 {
         max-width: 90vw; /* 280px */
     }
     
-    .modal-inner div > p {
+    .modal-inner div > p, .modal-inner div > li {
         font-size: 0.5em;
     }
 }
