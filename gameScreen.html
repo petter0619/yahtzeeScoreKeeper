@@ -8,13 +8,15 @@
     <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
     <style>
 
+        #roundCounter {
+            text-align: center;
+            margin: 3rem auto;
+        }   
+
         /* ----------------------- Dice Area ----------------------- */
 
         #diceArea {
-            border: 2px dotted black;
-
             margin: 3rem auto;
-
             display: grid;
             grid-template-columns: repeat(5, auto);
             justify-content: center;
@@ -23,7 +25,7 @@
 
         .diceBlock {
             display: grid;
-            justify-content: center;
+            justify-items: center;
         }
 
         .diceHolder {
@@ -46,6 +48,59 @@
             width: 100%;
         }
 
+        .diceHolder[data-locked="true"] {
+            border: 5px solid var(--green);
+        }
+
+        .diceBlock > button[role="diceLock"] {
+            font-size: 0.5em;
+            padding: 0.5rem;
+            width: 100px;
+        }
+
+        .diceBlock > button[data-locked="true"] {
+            --bs-color: rgba(0,0,0,0.6);
+            box-shadow: inset 0 -2px 5px var(--bs-color);
+            background: var(--yellow);
+            color: var(--pink);
+            border: 2px solid var(--pink);
+        }
+
+        /* ----------------------- Game Button Area ----------------------- */
+
+        #gameButtonArea {
+            display: flex;
+            align-items: top;
+            justify-content: center;
+        }
+
+        #rollDiceSection {
+            margin-right: 20%;
+            display: grid;
+            grid-gap: 10px;
+            justify-content: center;
+            text-align: center;
+        }
+
+        #saveRollResultSection > form {
+            display: grid;
+            grid-gap: 10px;
+            justify-items: center;
+        }
+
+        #rollDiceSection > span {
+            font-size: 0.8em;
+            font-style: italic;
+            color: white;
+        }
+
+        select[name="scoreSectionSelect"] {
+            border-radius: 5px;
+            width: 80%;
+            border: 0;
+            padding: 5px 0 6px 0;
+            margin: 5px 0;
+        }
 
         /* ----------------------- Score Area ----------------------- */
 
@@ -81,15 +136,16 @@
             --bs-color: rgba(0,0,0,0.1);
             box-shadow: inset 0 -2px 5px var(--bs-color);
             cursor:pointer;
+            font-size: 0.8em;
         }
 
-        button[aria-selected="true"] {
+        .tabs button[aria-selected="true"] {
             background: var(--yellow);
             box-shadow: none;
             color: rgba(0,0,0,0.7);
         }
 
-        button:hover {
+        button[role="tab"]:hover {
             outline: 0;
             --bs-color: rgba(0,0,0,0.6);
             background: var(--yellow);
@@ -121,52 +177,87 @@
     </nav>
     <!-- //.endTopNavigationMenu -->
 
+    <h1 id="roundCounter">Round 1 of 15</h1>
+
+    <!-- Dice Area -->
     <div id="diceArea">
         <div class="diceBlock">
-            <div class="diceHolder">
+            <div class="diceHolder" data-locked="true" data-diceSlot="1">
                 <img src="./assets/media/images/dice6.png" alt="">
             </div>
-            <button>Lock</button>
+            <button role="diceLock" data-locked="true" data-diceSlot="1">Lock</button>
         </div>
-        <div class="diceBlock">
-            <div class="diceHolder">
+        <div class="diceBlock" data-locked="false">
+            <div class="diceHolder" data-diceSlot="2">
                 <img src="./assets/media/images/dice2.png" alt="">
             </div>
-            <button>Lock</button>
+            <button role="diceLock" data-locked="false" data-diceSlot="2">Lock</button>
         </div>
         <div class="diceBlock">
-            <div class="diceHolder">
+            <div class="diceHolder" data-locked="false" data-diceSlot="3">
                 <img src="./assets/media/images/dice3.png" alt="">
             </div>
-            <button>Lock</button>
+            <button role="diceLock" data-locked="false" data-diceSlot="3">Lock</button>
         </div>
         <div class="diceBlock">
-            <div class="diceHolder">
+            <div class="diceHolder" data-locked="false" data-diceSlot="4">
                 <img src="./assets/media/images/dice4.png" alt="">
             </div>
-            <button>Lock</button>
+            <button role="diceLock" data-locked="false" data-diceSlot="4">Lock</button>
         </div>
         <div class="diceBlock">
-            <div class="diceHolder">
+            <div class="diceHolder" data-locked="false" data-diceSlot="5">
                 <img src="./assets/media/images/dice5.png" alt="">
             </div>
-            <button>Lock</button>
+            <button role="diceLock" data-locked="false" data-diceSlot="5">Lock</button>
         </div>
     </div>
+    <!-- //..diceArea -->
 
-    <div id="rollDiceSection">
-        <button>Roll Dice</button>
+    <!-- Game Button Area -->
+    <div id="gameButtonArea">
+        <div id="rollDiceSection">
+            <span>(Player 1 name)'s turn</span>
+            <button>Roll Dice</button>
+            <span>2 throws left</span>
+        </div>
+        
+        <div id="saveRollResultSection">
+            <form class="saveRollResult" autocomplete="off">
+                <select id="scoreSectionSelect" name="scoreSectionSelect">
+                    <option value="">--- Select Option ---</option>
+                    <optgroup label="Dice Values">
+                        <option value="aces">Aces</option>
+                        <option value="twos" disabled="true">Twos</option>
+                        <option value="threes">Threes</option>
+                        <option value="fours">Fours</option>
+                        <option value="fives">Fives</option>
+                        <option value="sixes">Sixes</option>
+                    </optgroup>
+                    <optgroup label="Poker Values">
+                        <option value="onePair">One Pair</option>
+                        <option value="twoPair">Two Pair</option>
+                        <option value="threeOfAKind">Three of a Kind</option>
+                        <option value="fourOfAKind">Four of a Kind</option>
+                        <option value="smallStraight">Small Straight</option>
+                        <option value="largeStraight">Large Straight</option>
+                        <option value="fullHouse">Full House</option>
+                        <option value="yahtzee">Yahtzee</option>
+                        <option value="chance">Chance</option>
+                    </optgroup>
+                </select>
+                <button type="submit">Save Result</button>
+            </form>
+        </div>
     </div>
-    
-    <div id="saveRollResultSection">
-        <button>Save Result</button>
-    </div>
+    <!-- //.gameButtonArea -->
 
+    <!-- Score Area -->
     <div id="scoreArea">
         <div class="tabs">
 
             <div role="tablist" aria-label="Programming Languages">
-                <button role="tab" aria-selected="false" id="player1">
+                <button role="tab" aria-selected="true" id="player1">
                     --- Player 1 Name ---
                 </button>
                 <button role="tab" aria-selected="false" id="player2">
@@ -183,24 +274,25 @@
                 </button>
             </div>
 
-            <div role="tabpanel" aria-labelledby="player1" hidden>
-                <p>--- Scores go here ---</p>
+            <div role="tabpanel" aria-labelledby="player1">
+                <p>--- Player 1's scores go here ---</p>
             </div>
             <div role="tabpanel" aria-labelledby="player2" hidden>
-                <p>--- Scores go here ---</p>
+                <p>--- Player 2's scores go here ---</p>
             </div>
             <div role="tabpanel" aria-labelledby="player3" hidden>
-                <p>--- Scores go here ---</p>
+                <p>--- Player 3's scores go here ---</p>
             </div>
             <div role="tabpanel" aria-labelledby="player4" hidden>
-                <p>--- Scores go here ---</p>
+                <p>--- Player 4's scores go here ---</p>
             </div>
             <div role="tabpanel" aria-labelledby="player5" hidden>
-                <p>--- Scores go here ---</p>
+                <p>--- Player 5's scores go here ---</p>
             </div>
 
         </div>
     </div>
+    <!-- //.scoreArea -->
 
     <script>
         // Grab the tabs wrapper
