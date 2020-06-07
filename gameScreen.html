@@ -111,8 +111,22 @@
             background: white;
             box-shadow: 0 0 3px 5px rgba(0,0,0,0.08653);
         }
+
+        #scoreArea table, #scoreArea td, #scoreArea th {
+            border: 1px black solid;
+            border-collapse: collapse;
+        }
+
+        #scoreTable th, #scoreTable td {
+            padding: 15px;
+            font-size: 20px;
+        }
+
+        #scoreTable {
+            width: 100%;
+        }
  
-        /* Tabs */ 
+        /* Tabs  
         .tabs {
             display: grid;
         }
@@ -149,7 +163,7 @@
             outline: 0;
             --bs-color: rgba(0,0,0,0.6);
             background: var(--yellow);
-        }
+        }*/
     </style>
 </head>
 <body>
@@ -254,43 +268,75 @@
 
     <!-- Score Area -->
     <div id="scoreArea">
-        <div class="tabs">
+        <select name="" id="">
+            <option value="onePair">Player 1</option>
+        </select>
+        <table id="scoreTable">
+            <tr>
+                <th>Categories</th>
+                <th>--- Player 1 Name ---</th>
+                <th>--- Player 2 Name ---</th>
+                <th>--- Player 3 Name ---</th>
+                <th>--- Player 4 Name ---</th>
+                <th>--- Player 5 Name ---</th>
+                <th>--- Player 6 Name ---</th>
+            </tr>
+            <tr>
+                <td>Aces</td>
+            </tr>
+            <tr>
+                <td>Twos</td>
+            </tr>
+            <tr>
+                <td>Threes</td>
+            </tr>
+            <tr>
+                <td>Fours</td>
+            </tr>
+            <tr>
+                <td>Fives</td>
+            </tr>
+            <tr>
+                <td>Sixes</td>
+            </tr>
+            <tr>
+                <td>SUM</td>
+            </tr>
+            <tr>
+                <td>BONUS</td>
+            </tr>
+            <tr>
+                <td>One Pair</td>
+            </tr>
+            <tr>
+                <td>Two Pair</td>
+            </tr>
+            <tr>
+                <td>Three of a Kind</td>
+            </tr>
+            <tr>
+                <td>Four of a Kind</td>
+            </tr>
+            <tr>
+                <td>Small Straight</td>
+            </tr>
+            <tr>
+                <td>Large Straight</td>
+            </tr>
+            <tr>
+                <td>Full House</td>
+            </tr>
+            <tr>
+                <td>Yahtzee</td>
+            </tr>
+            <tr>
+                <td>Chance</td>
+            </tr>
+            <tr>
+                <td>TOTAL SCORE</td>
+            </tr>
+        </table>
 
-            <div role="tablist" aria-label="Programming Languages">
-                <button role="tab" aria-selected="true" id="player1">
-                    --- Player 1 Name ---
-                </button>
-                <button role="tab" aria-selected="false" id="player2">
-                    --- Player 4 Name ---
-                </button>
-                <button role="tab" aria-selected="false" id="player3">
-                    --- Player 3 Name ---
-                </button>
-                <button role="tab" aria-selected="false" id="player4">
-                    --- Player 4 Name ---
-                </button>
-                <button role="tab" aria-selected="false" id="player5">
-                    --- Player 5 Name ---
-                </button>
-            </div>
-
-            <div role="tabpanel" aria-labelledby="player1">
-                <p>--- Player 1's scores go here ---</p>
-            </div>
-            <div role="tabpanel" aria-labelledby="player2" hidden>
-                <p>--- Player 2's scores go here ---</p>
-            </div>
-            <div role="tabpanel" aria-labelledby="player3" hidden>
-                <p>--- Player 3's scores go here ---</p>
-            </div>
-            <div role="tabpanel" aria-labelledby="player4" hidden>
-                <p>--- Player 4's scores go here ---</p>
-            </div>
-            <div role="tabpanel" aria-labelledby="player5" hidden>
-                <p>--- Player 5's scores go here ---</p>
-            </div>
-
-        </div>
     </div>
     <!-- //.scoreArea -->
 
