@@ -64,9 +64,14 @@ function closeModal(event) {
 
 // ----------------> startPlaying Modal => Add Players List Functions
 
-function handleSubmit(e) {
+function handleAddPlayerSubmit(e) {
     // Prevent formSubmit from changing URL
     e.preventDefault();
+    // Max 6 players to the list
+    if(playersList.length >= 6) {
+        alert('Max 6 players allowed!');
+        return;
+    }
     // Grab the value of the input
     const name = e.currentTarget.playerName.value;
     // IF input is empty string, don't submit it
@@ -108,8 +113,9 @@ mobileMenuIcon.addEventListener('click', toggleMobileMenu);
 // ----------------> Open Modals
 modalButtons.forEach(button => button.addEventListener('click', openModal))
 
-// ----------------> startPlaying Modal => Add Players List
-addPlayerList.addEventListener('submit', handleSubmit);
+
+// ----------------> startPlaying Modal => Add Players List <-------------------------- !!! Move into Open Modal function????
+addPlayerList.addEventListener('submit', handleAddPlayerSubmit);
 list.addEventListener('playersUpdated', displayPlayer); 
 // Event delegation: listen for the click on the <ul> but delegate the event to the button (IF statement); if that is what was clicked
 list.addEventListener('click', function (e) { 

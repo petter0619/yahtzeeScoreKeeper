@@ -241,12 +241,16 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: underline;
 }
 
-.modal-inner div > p, .modal-inner div li {
+.modal-inner div > p {
     font-size: 0.7em;
 }
 
 .modal-inner div ul {
     margin-top: 0;
+}
+
+.modal-inner div li {
+    font-size: 1.5em;
 }
 
 .modal-inner div > img {
