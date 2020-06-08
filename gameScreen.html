@@ -327,7 +327,7 @@
                 */
             } );
             console.log(rollArray);
-            // Run a FOR loop to slow down the placing of rollDice results on page
+            // Run a FOR loop to slow down the placing of rollDice results on page ('i = 1' to slow down presentation of 1st result)
             for(let i = 1; i < rollArray.length + 1; i++) {
                 setTimeout(function() {
                 rollArray[i-1][0].innerHTML = `<img src="./assets/media/images/dice${rollArray[i-1][1]}.png" alt="${rollArray[i-1][1]}">`
