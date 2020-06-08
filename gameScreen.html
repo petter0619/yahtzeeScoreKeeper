@@ -105,16 +105,26 @@
         /* ----------------------- Score Area ----------------------- */
 
         #scoreArea {
-            max-width: 90vw;
-            margin: 4rem auto;
-            padding: 2rem;
-            background: white;
-            box-shadow: 0 0 3px 5px rgba(0,0,0,0.08653);
+            display: grid;
+            justify-content: center;
         }
 
-        #scoreArea table, #scoreArea td, #scoreArea th {
-            border: 1px black solid;
+        #tableWrapper {
+            background-color: white;
+            box-shadow: 0 0 3px 5px rgba(0,0,0,0.08653);
+            padding: 2rem;
+            margin: 4rem auto;
+            max-width: 90vw;
+            border-radius: 5px;
+        }
+
+        #scoreTable, #scoreArea td, #scoreArea th {
+            border: 1px var(--grey) solid;
             border-collapse: collapse;
+        }
+
+        #scoreTable {
+            max-width: 90vw;
         }
 
         #scoreTable th, #scoreTable td {
@@ -122,48 +132,29 @@
             font-size: 20px;
         }
 
-        #scoreTable {
-            width: 100%;
-        }
- 
-        /* Tabs  
-        .tabs {
-            display: grid;
+        #scoreTable .nameColum, #scoreTable th[role="playerName"] {
+            background-color: #039bfa;
+            color: white;
         }
 
-        [role="tablist"] {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
-            grid-gap: 10px;
+        #scoreTable td.nameColum, #scoreTable th.nameColum {
+            width: 150px;
         }
 
-        [role="tabpanel"] {
-            background: var(--yellow);
-            padding: 2rem;
+        #scoreTable td.scoreColumn, #scoreTable th.scoreColumn {
+            max-width: 300px;
+            text-align: center;
         }
 
-        button[role="tab"] {
-            background: var(--grey);
-            border: 0;
-            color: black;
-            border-radius: 5px 5px 0 0;
-            --bs-color: rgba(0,0,0,0.1);
-            box-shadow: inset 0 -2px 5px var(--bs-color);
-            cursor:pointer;
-            font-size: 0.8em;
+        #scoreTable .blue, #scoreTable tr.blue {
+            background-color: var(--blue);
+            color: white;
         }
 
-        .tabs button[aria-selected="true"] {
-            background: var(--yellow);
-            box-shadow: none;
-            color: rgba(0,0,0,0.7);
+        #scoreTable [data-playerNum="3"], #scoreTable [data-playerNum="4"], #scoreTable [data-playerNum="5"], #scoreTable [data-playerNum="6"] {
+            /*display: none;*/
         }
 
-        button[role="tab"]:hover {
-            outline: 0;
-            --bs-color: rgba(0,0,0,0.6);
-            background: var(--yellow);
-        }*/
     </style>
 </head>
 <body>
@@ -273,15 +264,16 @@
             <option value="onePair">Player 1</option>
         </select>
         -->
+        <div id="tableWrapper">
         <table id="scoreTable">
             <tr>
-                <th class="nameColum">Categories</th>
-                <th data-playerNum="1">--- Player 1 Name ---</th>
-                <th data-playerNum="2">--- Player 2 Name ---</th>
-                <th data-playerNum="3">--- Player 3 Name ---</th>
-                <th data-playerNum="4">--- Player 4 Name ---</th>
-                <th data-playerNum="5">--- Player 5 Name ---</th>
-                <th data-playerNum="6">--- Player 6 Name ---</th>
+                <th class="nameColum blue">Categories</th>
+                <th data-playerNum="1" class="scoreColumn" role="playerName">--- Player 1 Name ---</th>
+                <th data-playerNum="2" class="scoreColumn" role="playerName">--- Player 2 Name ---</th>
+                <th data-playerNum="3" class="scoreColumn" role="playerName">--- Player 3 Name ---</th>
+                <th data-playerNum="4" class="scoreColumn" role="playerName">--- Player 4 Name ---</th>
+                <th data-playerNum="5" class="scoreColumn" role="playerName">--- Player 5 Name ---</th>
+                <th data-playerNum="6" class="scoreColumn" role="playerName">--- Player 6 Name ---</th>
             </tr>
             <tr>
                 <td class="nameColum">Aces</td>
@@ -337,8 +329,8 @@
                 <td class="scoreColumn" data-playerNum="5" role="sixesScore"></td>
                 <td class="scoreColumn" data-playerNum="6" role="sixesScore"></td>
             </tr>
-            <tr>
-                <td class="nameColum">SUM</td>
+            <tr class="blue">
+                <td class="nameColum blue" role="partOneSumScore">SUM</td>
                 <td class="scoreColumn" data-playerNum="1" role="partOneSumScore"></td>
                 <td class="scoreColumn" data-playerNum="2" role="partOneSumScore"></td>
                 <td class="scoreColumn" data-playerNum="3" role="partOneSumScore"></td>
@@ -346,8 +338,8 @@
                 <td class="scoreColumn" data-playerNum="5" role="partOneSumScore"></td>
                 <td class="scoreColumn" data-playerNum="6" role="partOneSumScore"></td>
             </tr>
-            <tr>
-                <td class="nameColum">BONUS</td>
+            <tr class="blue">
+                <td class="nameColum blue" role="bonusScore">BONUS</td>
                 <td class="scoreColumn" data-playerNum="1" role="bonusScore"></td>
                 <td class="scoreColumn" data-playerNum="2" role="bonusScore"></td>
                 <td class="scoreColumn" data-playerNum="3" role="bonusScore"></td>
@@ -436,8 +428,8 @@
                 <td class="scoreColumn" data-playerNum="5" role="chanceScore"></td>
                 <td class="scoreColumn" data-playerNum="6" role="chanceScore"></td>
             </tr>
-            <tr>
-                <td class="nameColum">TOTAL SCORE</td>
+            <tr class="blue">
+                <td class="nameColum blue" role="totalScore">TOTAL SCORE</td>
                 <td class="scoreColumn" data-playerNum="1" role="totalScore"></td>
                 <td class="scoreColumn" data-playerNum="2" role="totalScore"></td>
                 <td class="scoreColumn" data-playerNum="3" role="totalScore"></td>
@@ -446,7 +438,7 @@
                 <td class="scoreColumn" data-playerNum="6" role="totalScore"></td>
             </tr>
         </table>
-
+    </div>
     </div>
     <!-- //.scoreArea -->
 
