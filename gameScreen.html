@@ -304,13 +304,6 @@
 
         /* Functions */
 
-        // Function to slow down the placing of rollDice results on page
-        function presentResults(i, rollArray) {
-            setTimeout(function() {
-                rollArray[i-1][0].innerHTML = `<img src="./assets/media/images/dice${rollArray[i-1][1]}.png" alt="${rollArray[i-1][1]}">`
-            }, 750 * i);
-        }
-
         function handleRollDice(event) {
             console.log('Roll Dice!');
             
@@ -336,7 +329,9 @@
             console.log(rollArray);
             // Run a FOR loop to slow down the placing of rollDice results on page
             for(let i = 1; i < rollArray.length + 1; i++) {
-                presentResults(i, rollArray);
+                setTimeout(function() {
+                rollArray[i-1][0].innerHTML = `<img src="./assets/media/images/dice${rollArray[i-1][1]}.png" alt="${rollArray[i-1][1]}">`
+                }, 750 * i);
             }
         }
 
