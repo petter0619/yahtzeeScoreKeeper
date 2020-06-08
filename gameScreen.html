@@ -321,10 +321,6 @@
                 // 3) Roll dice: Return a random number between 1 and 6
                 const diceRoll = Math.floor(Math.random() * 6) + 1;
                 rollArray.push([diceHolder, diceRoll]);
-                /*
-                ----> IF you wanted to just display results instantly...
-                diceHolder.innerHTML = `<img src="./assets/media/images/dice${diceRoll}.png" alt="${diceRoll}">`;
-                */
             } );
             console.log(rollArray);
             // Run a FOR loop to slow down the placing of rollDice results on page ('i = 1' to slow down presentation of 1st result)
