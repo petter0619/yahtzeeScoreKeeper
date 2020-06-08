@@ -37,13 +37,13 @@
     <!-- Dice Area -->
     <div id="diceArea">
         <div class="diceBlock">
-            <div class="diceHolder" data-locked="true" data-diceSlot="1">
+            <div class="diceHolder" data-locked="false" data-diceSlot="1">
                 <img src="./assets/media/images/dice6.png" alt="">
             </div>
-            <button role="diceLock" data-locked="true" data-diceSlot="1">Unlock</button>
+            <button role="diceLock" data-locked="false" data-diceSlot="1">Unlock</button>
         </div>
-        <div class="diceBlock" data-locked="false">
-            <div class="diceHolder" data-diceSlot="2">
+        <div class="diceBlock">
+            <div class="diceHolder" data-locked="false" data-diceSlot="2">
                 <img src="./assets/media/images/dice2.png" alt="">
             </div>
             <button role="diceLock" data-locked="false" data-diceSlot="2">Lock</button>
@@ -296,7 +296,7 @@
 
     /* -------------------------------- Roll Dice -------------------------------- */ 
         /* Variables */
-        const diceHolders = document.querySelectorAll('.diceHolder');                   // Wrapper for the dice images
+        const diceHolders = Array.from(document.querySelectorAll('.diceHolder'));                   // Wrapper for the dice images
         const diceLockButtons = document.querySelectorAll('button[role="diceLock"]');
         const rollDiceButton = document.querySelector('#rollDiceButton');
         const saveDiceForm = document.querySelector('.saveRollResult');
@@ -307,7 +307,20 @@
         }
 
         function handleDiceLock(event) {
-            console.log('Dice locked!', event.currentTarget);
+            // Store the 'diceslot' attribute value of the clicked button
+            const diceSlot = event.currentTarget.dataset.diceslot;
+            // Find + store diceHolder with matching 'diceslot' attribute value            
+            const matchingDiceHolder = diceHolders.find(element => element.dataset.diceslot === diceSlot );
+            // Change 'locked' attribute to 'true'/'false'
+            if(matchingDiceHolder.dataset.locked === 'true') {
+                matchingDiceHolder.setAttribute('data-locked', 'false');
+                event.currentTarget.setAttribute('data-locked', 'false');
+                event.currentTarget.textContent = 'Lock';
+            } else {
+                matchingDiceHolder.setAttribute('data-locked', 'true');
+                event.currentTarget.setAttribute('data-locked', 'true');
+                event.currentTarget.textContent = 'Unlock';
+            }
         }
 
         function handleSaveDiceSubmit(event) {
