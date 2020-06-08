@@ -305,6 +305,26 @@
         /* Functions */
         function handleRollDice(event) {
             console.log('Roll Dice!');
+
+            diceHolders.forEach( diceHolder => {
+                // 1) Identify (+ store?) all non-locked in dice slots
+                if(diceHolder.dataset.locked === 'true') {
+                    console.log(`Diceslot ${diceHolder.dataset.diceslot} is locked`); // <--------------
+                    return;
+                } 
+                console.log(`Diceslot ${diceHolder.dataset.diceslot} is NOT locked`); // <--------------
+                // 2) Empty all non-locked in dice slots
+                diceHolder.innerHTML = '';
+                // 3) Roll dice: Return a random number between 1 and 6
+                const diceRoll = Math.floor(Math.random() * 6) + 1;
+                diceHolder.innerHTML = `<img src="./assets/media/images/dice${diceRoll}.png" alt="${diceRoll}">`;
+                console.log(diceRoll);
+
+            } );
+
+            
+
+
         }
 
         function handleDiceLock(event) {
@@ -323,6 +343,7 @@
                 event.currentTarget.textContent = 'Unlock';
             }
         }
+
 
         function handleSaveDiceSubmit(event) {
             event.preventDefault();
@@ -343,12 +364,15 @@
                 // Send results into diceResultArray (could also use .splice() along w. the 'index' param...)
                 diceResultArray.push(diceValue);
             });
-            console.log(diceResultArray);
+            console.log(chosenCategory, diceResultArray);
+            // Reset dropwdown menu to "Select Option"
+            document.getElementById("scoreSectionSelect").selectedIndex = 0;
 
             /* -------------------- Left to do: -------------------- */
             // Store currentPlayer
-            // Send diceResultArray into playerObject
+            // Send diceResultArray into playerObject (use squareBracket['keyAsString'] method)
             // Update scoreArea with result
+            // Store which scoreCategory currentPlayer somehow... so it can be removed from dropdown...
 
 
             // Clear diceResultArray at END
