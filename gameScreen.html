@@ -38,31 +38,31 @@
     <div id="diceArea">
         <div class="diceBlock">
             <div class="diceHolder" data-locked="false" data-diceSlot="1">
-                <img src="./assets/media/images/dice6.png" alt="">
+                <img src="./assets/media/images/dice6.png" alt="6">
             </div>
-            <button role="diceLock" data-locked="false" data-diceSlot="1">Unlock</button>
+            <button role="diceLock" data-locked="false" data-diceSlot="1">Lock</button>
         </div>
         <div class="diceBlock">
             <div class="diceHolder" data-locked="false" data-diceSlot="2">
-                <img src="./assets/media/images/dice2.png" alt="">
+                <img src="./assets/media/images/dice2.png" alt="2">
             </div>
             <button role="diceLock" data-locked="false" data-diceSlot="2">Lock</button>
         </div>
         <div class="diceBlock">
             <div class="diceHolder" data-locked="false" data-diceSlot="3">
-                <img src="./assets/media/images/dice3.png" alt="">
+                <img src="./assets/media/images/dice3.png" alt="3">
             </div>
             <button role="diceLock" data-locked="false" data-diceSlot="3">Lock</button>
         </div>
         <div class="diceBlock">
             <div class="diceHolder" data-locked="false" data-diceSlot="4">
-                <img src="./assets/media/images/dice4.png" alt="">
+                <img src="./assets/media/images/dice4.png" alt="4">
             </div>
             <button role="diceLock" data-locked="false" data-diceSlot="4">Lock</button>
         </div>
         <div class="diceBlock">
             <div class="diceHolder" data-locked="false" data-diceSlot="5">
-                <img src="./assets/media/images/dice5.png" alt="">
+                <img src="./assets/media/images/dice5.png" alt="5">
             </div>
             <button role="diceLock" data-locked="false" data-diceSlot="5">Lock</button>
         </div>
@@ -300,6 +300,7 @@
         const diceLockButtons = document.querySelectorAll('button[role="diceLock"]');
         const rollDiceButton = document.querySelector('#rollDiceButton');
         const saveDiceForm = document.querySelector('.saveRollResult');
+        let diceResultArray = [];
 
         /* Functions */
         function handleRollDice(event) {
@@ -325,7 +326,32 @@
 
         function handleSaveDiceSubmit(event) {
             event.preventDefault();
-            console.log('saveDiceForm submitted!', event.currentTarget.scoreSectionSelect.value);
+            // If no valid options is chosen, send alert()
+            if(event.currentTarget.scoreSectionSelect.value === '--- Select Option ---') {
+                alert('Not a valid category. Please pick another.');
+                return;
+            }
+            // Store the chosen scoreCategory
+            const chosenCategory = event.currentTarget.scoreSectionSelect.value;
+
+            // OPT: empty diceResultArray before entering new results...
+            diceResultArray = [];
+            
+            // Store the dice values in the diceResultArray
+            diceHolders.forEach( (diceHolder, index) => {
+                const diceValue = parseInt(diceHolder.querySelector('img').alt);
+                // Send results into diceResultArray (could also use .splice() along w. the 'index' param...)
+                diceResultArray.push(diceValue);
+            });
+            console.log(diceResultArray);
+
+            /* -------------------- Left to do: -------------------- */
+            // Store currentPlayer
+            // Send diceResultArray into playerObject
+            // Update scoreArea with result
+
+
+            // Clear diceResultArray at END
         }
 
 
