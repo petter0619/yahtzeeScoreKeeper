@@ -397,6 +397,7 @@ h1, h2, h3, h4, h5, h6 {
     display: grid;
     grid-gap: 10px;
     justify-content: center;
+    justify-items: center;
     text-align: center;
 }
 
@@ -470,9 +471,6 @@ select[name="scoreSectionSelect"] {
     color: white;
 }
 
-#scoreTable [data-playerNum="3"], #scoreTable [data-playerNum="4"], #scoreTable [data-playerNum="5"], #scoreTable [data-playerNum="6"] {
-    /*display: none;*/
-}
 /* ----------------------- /.scoreArea ----------------------- */
 
 
@@ -504,7 +502,7 @@ select[name="scoreSectionSelect"] {
         font-size: 1.5rem;
     }
 
-}
+}/* <--------- Media Query End */
 
 @media screen and (max-width: 992px) {
     
@@ -546,7 +544,36 @@ select[name="scoreSectionSelect"] {
         color: #4CAF50;
     }
 
-}
+    /* Dice Area */
+
+    #diceArea {
+        grid-gap: 20px;
+    }
+
+
+    .diceHolder {
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+    }
+    
+    /* Game Button Area */
+
+    select[name="scoreSectionSelect"] {
+        width: 100%;
+    }
+
+    /* Score Area */
+    #scoreTable td.nameColum, #scoreTable th.nameColum {
+        width: 100px;
+    }
+
+    #scoreTable th, #scoreTable td {
+        padding: 8px;
+        font-size: 16px;
+    }
+
+}/* <--------- Media Query End */
     
 @media screen and (max-width: 780px) {
  
@@ -583,9 +610,56 @@ select[name="scoreSectionSelect"] {
     .modal-inner div > p, .modal-inner div > li {
         font-size: 0.5em;
     }
-}
 
-@media screen and (max-width: 440px) {
+    /* Dice Area */
+
+    #diceArea {
+        grid-gap: 10px;
+    }
+
+
+    .diceHolder {
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+    }
+
+    .diceBlock > button[role="diceLock"] {
+        width: 80px;
+    }
+    
+    /* Game Button Area */
+
+    #rollDiceSection {
+        margin-right: 10%; 
+        font-size: 32px;
+    }
+
+    #rollDiceSection > button {
+        font-size: 0.5em;
+        width: 60%;
+    }
+
+    #saveRollResultSection > form > button {
+        font-size: 0.5em;
+        width: 100%;
+    }
+
+}/* <--------- Media Query End */
+
+
+@media screen and (max-width: 680px) {
+
+    /* Score Area */
+
+    #scoreTable [data-playerNum="2"], #scoreTable [data-playerNum="3"], #scoreTable [data-playerNum="4"], #scoreTable [data-playerNum="5"], #scoreTable [data-playerNum="6"] {
+            display: none;
+        }
+
+}/* <--------- Media Query End */
+
+
+@media screen and (max-width: 500px) {
 
     /* Start Screen */
 
@@ -632,6 +706,36 @@ select[name="scoreSectionSelect"] {
         margin-top: 5px;
     }
 
-}
+    /* Game Screen Header */
+
+    #roundCounter {
+        margin: 2rem auto;
+        font-size: 1em;
+    }
+
+    /* Dice Area */
+
+    #diceArea {
+        margin: 1rem auto;
+        grid-gap: 10px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .diceHolder {
+        margin: 10px 5px;
+    }
+
+    /* Game Button Area */
+
+    #gameButtonArea {
+        flex-wrap: wrap;
+    }
+
+    #rollDiceSection {
+        margin: 30px 0;
+    }
+
+}/* <--------- Media Query End */
 
 /* -------------------------- //.mediaQueries -------------------------- */
