@@ -268,12 +268,14 @@
 
     <!-- Score Area -->
     <div id="scoreArea">
+        <!--
         <select name="" id="">
             <option value="onePair">Player 1</option>
         </select>
+        -->
         <table id="scoreTable">
             <tr>
-                <th>Categories</th>
+                <th class="nameColum">Categories</th>
                 <th data-playerNum="1">--- Player 1 Name ---</th>
                 <th data-playerNum="2">--- Player 2 Name ---</th>
                 <th data-playerNum="3">--- Player 3 Name ---</th>
@@ -282,58 +284,166 @@
                 <th data-playerNum="6">--- Player 6 Name ---</th>
             </tr>
             <tr>
-                <td>Aces</td>
+                <td class="nameColum">Aces</td>
+                <td class="scoreColumn" data-playerNum="1" role="acesScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="acesScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="acesScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="acesScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="acesScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="acesScore"></td>
             </tr>
             <tr>
-                <td>Twos</td>
+                <td class="nameColum">Twos</td>
+                <td class="scoreColumn" data-playerNum="1" role="twosScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="twosScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="twosScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="twosScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="twosScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="twosScore"></td>
             </tr>
             <tr>
-                <td>Threes</td>
+                <td class="nameColum">Threes</td>
+                <td class="scoreColumn" data-playerNum="1" role="threesScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="threesScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="threesScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="threesScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="threesScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="threesScore"></td>
             </tr>
             <tr>
-                <td>Fours</td>
+                <td class="nameColum">Fours</td>
+                <td class="scoreColumn" data-playerNum="1" role="foursScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="foursScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="foursScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="foursScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="foursScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="foursScore"></td>
             </tr>
             <tr>
-                <td>Fives</td>
+                <td class="nameColum">Fives</td>
+                <td class="scoreColumn" data-playerNum="1" role="fivesScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="fivesScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="fivesScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="fivesScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="fivesScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="fivesScore"></td>
             </tr>
             <tr>
-                <td>Sixes</td>
+                <td class="nameColum">Sixes</td>
+                <td class="scoreColumn" data-playerNum="1" role="sixesScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="sixesScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="sixesScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="sixesScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="sixesScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="sixesScore"></td>
             </tr>
             <tr>
-                <td>SUM</td>
+                <td class="nameColum">SUM</td>
+                <td class="scoreColumn" data-playerNum="1" role="partOneSumScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="partOneSumScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="partOneSumScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="partOneSumScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="partOneSumScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="partOneSumScore"></td>
             </tr>
             <tr>
-                <td>BONUS</td>
+                <td class="nameColum">BONUS</td>
+                <td class="scoreColumn" data-playerNum="1" role="bonusScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="bonusScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="bonusScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="bonusScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="bonusScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="bonusScore"></td>
             </tr>
             <tr>
-                <td>One Pair</td>
+                <td class="nameColum">One Pair</td>
+                <td class="scoreColumn" data-playerNum="1" role="onePairScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="onePairScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="onePairScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="onePairScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="onePairScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="onePairScore"></td>
             </tr>
             <tr>
-                <td>Two Pair</td>
+                <td class="nameColum">Two Pair</td>
+                <td class="scoreColumn" data-playerNum="1" role="twoPairScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="twoPairScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="twoPairScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="twoPairScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="twoPairScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="twoPairScore"></td>
             </tr>
             <tr>
-                <td>Three of a Kind</td>
+                <td class="nameColum">Three of a Kind</td>
+                <td class="scoreColumn" data-playerNum="1" role="threeOfAKindScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="threeOfAKindScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="threeOfAKindScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="threeOfAKindScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="threeOfAKindScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="threeOfAKindScore"></td>
             </tr>
             <tr>
-                <td>Four of a Kind</td>
+                <td class="nameColum">Four of a Kind</td>
+                <td class="scoreColumn" data-playerNum="1" role="fourOfAKindScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="fourOfAKindScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="fourOfAKindScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="fourOfAKindScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="fourOfAKindScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="fourOfAKindScore"></td>
             </tr>
             <tr>
-                <td>Small Straight</td>
+                <td class="nameColum">Small Straight</td>
+                <td class="scoreColumn" data-playerNum="1" role="smallStraightScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="smallStraightScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="smallStraightScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="smallStraightScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="smallStraightScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="smallStraightScore"></td>
             </tr>
             <tr>
-                <td>Large Straight</td>
+                <td class="nameColum">Large Straight</td>
+                <td class="scoreColumn" data-playerNum="1" roll="largeStraightScore"></td>
+                <td class="scoreColumn" data-playerNum="2" roll="largeStraightScore"></td>
+                <td class="scoreColumn" data-playerNum="3" roll="largeStraightScore"></td>
+                <td class="scoreColumn" data-playerNum="4" roll="largeStraightScore"></td>
+                <td class="scoreColumn" data-playerNum="5" roll="largeStraightScore"></td>
+                <td class="scoreColumn" data-playerNum="6" roll="largeStraightScore"></td>
             </tr>
             <tr>
-                <td>Full House</td>
+                <td class="nameColum">Full House</td>
+                <td class="scoreColumn" data-playerNum="1" role="fullHouseScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="fullHouseScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="fullHouseScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="fullHouseScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="fullHouseScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="fullHouseScore"></td>
             </tr>
             <tr>
-                <td>Yahtzee</td>
+                <td class="nameColum">Yahtzee</td>
+                <td class="scoreColumn" data-playerNum="1" role="yahtzeeScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="yahtzeeScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="yahtzeeScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="yahtzeeScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="yahtzeeScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="yahtzeeScore"></td>
             </tr>
             <tr>
-                <td>Chance</td>
+                <td class="nameColum">Chance</td>
+                <td class="scoreColumn" data-playerNum="1" role="chanceScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="chanceScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="chanceScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="chanceScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="chanceScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="chanceScore"></td>
             </tr>
             <tr>
-                <td>TOTAL SCORE</td>
+                <td class="nameColum">TOTAL SCORE</td>
+                <td class="scoreColumn" data-playerNum="1" role="totalScore"></td>
+                <td class="scoreColumn" data-playerNum="2" role="totalScore"></td>
+                <td class="scoreColumn" data-playerNum="3" role="totalScore"></td>
+                <td class="scoreColumn" data-playerNum="4" role="totalScore"></td>
+                <td class="scoreColumn" data-playerNum="5" role="totalScore"></td>
+                <td class="scoreColumn" data-playerNum="6" role="totalScore"></td>
             </tr>
         </table>
 
