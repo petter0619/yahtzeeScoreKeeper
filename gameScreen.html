@@ -262,8 +262,9 @@
         let diceResultArray = [];
 
         /* State */
-        let currentPlayer = 0;
+        let roundTurn = 1;
         let rollTurn = 1;
+        let currentPlayer = 0;
         let playerInstanceArray = [];
 
         /* Functions */
@@ -330,9 +331,9 @@
                 rollArray.push([diceHolder, diceRoll]);
             } );
             // Run a FOR loop to slow down the placing of rollDice results on page ('i = 1' to slow down presentation of 1st result)
-            for(let i = 1; i < rollArray.length + 1; i++) {
+            for(let i = 0; i < rollArray.length; i++) {
                 setTimeout(function() {
-                rollArray[i-1][0].innerHTML = `<img src="./assets/media/images/dice${rollArray[i-1][1]}.png" alt="${rollArray[i-1][1]}">`
+                rollArray[i][0].innerHTML = `<img src="./assets/media/images/dice${rollArray[i][1]}.png" alt="${rollArray[i][1]}">`
                 }, 750 * i);
             }
             // Update 'X throws left' text
@@ -372,7 +373,7 @@
             // Store the chosen scoreCategory
             const chosenCategory = event.currentTarget.scoreSectionSelect.value;
 
-            // OPT: empty diceResultArray before entering new results...
+            // Clear diceResultArray of previous players saved result
             diceResultArray = [];
             
             // Store the dice values in the diceResultArray
@@ -388,8 +389,32 @@
             // Set chosenCategory (aka playerInstance property) to diceResultArray
             playerInstanceArray[ currentPlayer ][ chosenCategory ] = diceResultArray;
 
-            /* ----------------- Reset Game Area ----------------- */
+            /* ----------------- CurrentPlayer ----------------- */
 
+             // Increment CurrentPlayer state
+             if(currentPlayer === playerInstanceArray.length - 1) {
+                currentPlayer = 0;
+                // Update roundCounter header (needs to be done right as currentPlayer is updated...)
+                roundTurn += 1;
+                document.querySelector('#roundCounter').textContent = `Round ${roundTurn} of 15`;
+                console.log(roundTurn);
+            } else {
+                currentPlayer += 1;
+            }
+
+            // Fire off custom event for resetGameArea function
+            saveDiceForm.dispatchEvent(new CustomEvent('diceResultSaved'));
+
+            
+
+            /* -------------------- Left to do: -------------------- */
+
+            // -------> Update scoreArea with result
+            // -------> Security check / remove options ----- Store which scoreCategory currentPlayer somehow... so it can be removed from dropdown...
+
+        }
+
+        function resetGameArea() {
             // Reset dropwdown menu to "Select Option"
             document.getElementById("scoreSectionSelect").selectedIndex = 0;
 
@@ -416,14 +441,8 @@
             // Reset 'X throws left' text
             document.querySelector('#throwsLeftText').textContent = '3 throws left';
 
-            /* -------------------- Left to do: -------------------- */
-            // Store currentPlayer
-            // Send diceResultArray into playerObject (use squareBracket['keyAsString'] method)
-            // Update scoreArea with result
-            // Store which scoreCategory currentPlayer somehow... so it can be removed from dropdown...
-
-
-            // Clear diceResultArray at END
+            // Update playerTurnText
+            document.querySelector('#playerTurnText').textContent = `${playerInstanceArray[ currentPlayer ].name}'s turn`;
         }
 
 
@@ -431,6 +450,7 @@
         rollDiceButton.addEventListener('click', handleRollDice);
         diceLockButtons.forEach( button => button.addEventListener('click', handleDiceLock));
         saveDiceForm.addEventListener('submit', handleSaveDiceSubmit);
+        saveDiceForm.addEventListener('diceResultSaved', resetGameArea);
 
 
     </script>
