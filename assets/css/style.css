@@ -429,7 +429,8 @@ select[name="scoreSectionSelect"] {
     justify-content: center;
 }
 
-#tableWrapper {
+#gameScoreTable {
+    display: flex;
     background-color: white;
     box-shadow: 0 0 3px 5px rgba(0,0,0,0.08653);
     padding: 2rem;
@@ -438,40 +439,40 @@ select[name="scoreSectionSelect"] {
     border-radius: 5px;
 }
 
-#scoreTable, #scoreArea td, #scoreArea th {
+#gameScoreTable .scoreHolder, #gameScoreTable .scoreHeader, #gameScoreTable .catNameHolder {
     border: 1px var(--grey) solid;
     border-collapse: collapse;
-}
-
-#scoreTable {
-    max-width: 90vw;
-}
-
-#scoreTable th, #scoreTable td {
     padding: 15px;
     font-size: 20px;
+
+    height: 30px;
+    min-width: 85px;
+    overflow: hidden;
 }
 
-#scoreTable .nameColum, #scoreTable th[role="playerName"] {
+#gameScoreTable .scoreHeader {
+    font-weight: 600;
+}
+
+#gameScoreTable div[role="playerName"], #gameScoreTable div.catNameHolder {
     background-color: #039bfa;
     color: white;
 }
 
-#scoreTable td.nameColum, #scoreTable th.nameColum {
-    width: 150px;
+#scoreCategoryCol .scoreHeader, div[role="upperSum"], div[role="upperBonus"], div[role="totalScore"] {
+    background-color: var(--blue) !important; 
+    color: white !important;
 }
 
-#scoreTable td.scoreColumn, #scoreTable th.scoreColumn {
-    max-width: 300px;
+#gameScoreTable .catNameHolder {
+    min-width: 150px;
+}
+
+#gameScoreTable div[role="playerName"], #gameScoreTable .scoreHolder {
     text-align: center;
 }
 
-#scoreTable .blue, #scoreTable tr.blue {
-    background-color: var(--blue);
-    color: white;
-}
-
-/* ----------------------- /.scoreArea ----------------------- */
+/* ----------------------- /.#gameScoreTableWrapper ----------------------- */
 
 
 /* -------------------------- MEDIA QUERIES -------------------------- */
@@ -564,13 +565,20 @@ select[name="scoreSectionSelect"] {
     }
 
     /* Score Area */
-    #scoreTable td.nameColum, #scoreTable th.nameColum {
-        width: 100px;
+
+    #gameScoreTable .scoreHolder, #gameScoreTable .scoreHeader, #gameScoreTable .catNameHolder {
+        min-width: 70px;
+        padding: 10px;
+        font-size: 15px;
+        height: 20px;
     }
 
-    #scoreTable th, #scoreTable td {
-        padding: 8px;
-        font-size: 16px;
+    #gameScoreTable div[role="playerName"], #scoreCategoryCol .scoreHeader {
+        height: 30px;
+    }
+
+    #gameScoreTable .catNameHolder {
+        min-width: 100px;
     }
 
 }/* <--------- Media Query End */
@@ -645,16 +653,22 @@ select[name="scoreSectionSelect"] {
         width: 100%;
     }
 
-}/* <--------- Media Query End */
-
-
-@media screen and (max-width: 680px) {
-
     /* Score Area */
 
-    #scoreTable [data-playerNum="2"], #scoreTable [data-playerNum="3"], #scoreTable [data-playerNum="4"], #scoreTable [data-playerNum="5"], #scoreTable [data-playerNum="6"] {
-            display: none;
-        }
+    #gameScoreTable div[data-currentPlayer="false"] {
+        display: none;
+    }
+
+    #gameScoreTable .scoreHolder, #gameScoreTable .scoreHeader, #gameScoreTable .catNameHolder {
+        min-width: 85px;
+        padding: 15px;
+        font-size: 20px;
+        height: 30px;
+    }
+
+    #gameScoreTable .catNameHolder {
+        min-width: 150px;
+    }
 
 }/* <--------- Media Query End */
 
@@ -734,6 +748,17 @@ select[name="scoreSectionSelect"] {
 
     #rollDiceSection {
         margin: 30px 0;
+    }
+
+    /* Score Area */
+    #gameScoreTable .scoreHolder, #gameScoreTable .scoreHeader, #gameScoreTable .catNameHolder {
+        min-width: 70px;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    #gameScoreTable .catNameHolder {
+        min-width: 100px;
     }
 
 }/* <--------- Media Query End */

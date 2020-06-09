@@ -1,0 +1,81 @@
+/* ----------------------- Score Area ----------------------- */
+
+#gameScoreTableWrapper {
+    display: grid;
+    justify-content: center;
+}
+
+#tableWrapper {
+    background-color: white;
+    box-shadow: 0 0 3px 5px rgba(0,0,0,0.08653);
+    padding: 2rem;
+    margin: 4rem auto;
+    max-width: 90vw;
+    border-radius: 5px;
+}
+
+#scoreTable, #gameScoreTableWrapper td, #gameScoreTableWrapper th {
+    border: 1px var(--grey) solid;
+    border-collapse: collapse;
+}
+
+#scoreTable {
+    max-width: 90vw;
+}
+
+#scoreTable th, #scoreTable td {
+    padding: 15px;
+    font-size: 20px;
+}
+
+#scoreTable .nameColum, #scoreTable th[role="playerName"] {
+    background-color: #039bfa;
+    color: white;
+}
+
+#scoreTable td.nameColum, #scoreTable th.nameColum {
+    width: 150px;
+}
+
+#scoreTable td.scoreColumn, #scoreTable th.scoreColumn {
+    max-width: 300px;
+    text-align: center;
+}
+
+#scoreTable .blue, #scoreTable tr.blue {
+    background-color: var(--blue);
+    color: white;
+}
+
+/* ----------------------- /.#gameScoreTableWrapper ----------------------- */
+
+/* -------------------------- MEDIA QUERIES -------------------------- */
+
+
+@media screen and (max-width: 992px) {
+
+    /* Score Area */
+    #scoreTable td.nameColum, #scoreTable th.nameColum {
+        width: 100px;
+    }
+
+    #scoreTable th, #scoreTable td {
+        padding: 8px;
+        font-size: 16px;
+    }
+
+}/* <--------- Media Query End */
+
+
+@media screen and (max-width: 680px) {
+
+    /* Score Area */
+
+    #scoreTable [data-playerNum="2"], #scoreTable [data-playerNum="3"], #scoreTable [data-playerNum="4"], #scoreTable [data-playerNum="5"], #scoreTable [data-playerNum="6"] {
+            display: none;
+    }
+
+}/* <--------- Media Query End */
+
+
+/* -------------------------- //.mediaQueries -------------------------- */
