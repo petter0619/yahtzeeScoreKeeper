@@ -6,17 +6,6 @@
     <title>Yahtzee Score Keeper - Game Screen</title>
     <script src="https://kit.fontawesome.com/b7e26214dd.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
-
-    <style>
-
-
-        @media screen and (max-width: 500px) {
-
-            
-        }
-
-
-    </style>
 </head>
 <body>
     <!-- Top Navigation Menu -->
@@ -42,235 +31,236 @@
         </button>
     </nav>
     <!-- //.endTopNavigationMenu -->
+    <div id="gameScreen">
+        <h1 id="roundCounter">Round 1 of 15</h1>
 
-    <h1 id="roundCounter">Round 1 of 15</h1>
+        <!-- Dice Area -->
+        <div id="diceArea">
+            <div class="diceBlock">
+                <div class="diceHolder" data-locked="false" data-diceSlot="1">
+                    <img src="./assets/media/images/dice6.png" alt="6">
+                </div>
+                <button role="diceLock" data-locked="false" data-diceSlot="1">Lock</button>
+            </div>
+            <div class="diceBlock">
+                <div class="diceHolder" data-locked="false" data-diceSlot="2">
+                    <img src="./assets/media/images/dice2.png" alt="2">
+                </div>
+                <button role="diceLock" data-locked="false" data-diceSlot="2">Lock</button>
+            </div>
+            <div class="diceBlock">
+                <div class="diceHolder" data-locked="false" data-diceSlot="3">
+                    <img src="./assets/media/images/dice3.png" alt="3">
+                </div>
+                <button role="diceLock" data-locked="false" data-diceSlot="3">Lock</button>
+            </div>
+            <div class="diceBlock">
+                <div class="diceHolder" data-locked="false" data-diceSlot="4">
+                    <img src="./assets/media/images/dice4.png" alt="4">
+                </div>
+                <button role="diceLock" data-locked="false" data-diceSlot="4">Lock</button>
+            </div>
+            <div class="diceBlock">
+                <div class="diceHolder" data-locked="false" data-diceSlot="5">
+                    <img src="./assets/media/images/dice5.png" alt="5">
+                </div>
+                <button role="diceLock" data-locked="false" data-diceSlot="5">Lock</button>
+            </div>
+        </div>
+        <!-- //..diceArea -->
 
-    <!-- Dice Area -->
-    <div id="diceArea">
-        <div class="diceBlock">
-            <div class="diceHolder" data-locked="false" data-diceSlot="1">
-                <img src="./assets/media/images/dice6.png" alt="6">
+        <!-- Game Button Area -->
+        <div id="gameButtonArea">
+            <div id="rollDiceSection">
+                <span>(Player 1 name)'s turn</span>
+                <button id="rollDiceButton">Roll Dice</button>
+                <span>2 throws left</span>
             </div>
-            <button role="diceLock" data-locked="false" data-diceSlot="1">Lock</button>
-        </div>
-        <div class="diceBlock">
-            <div class="diceHolder" data-locked="false" data-diceSlot="2">
-                <img src="./assets/media/images/dice2.png" alt="2">
+            
+            <div id="saveRollResultSection">
+                <form class="saveRollResult" autocomplete="off">
+                    <select id="scoreSectionSelect" name="scoreSectionSelect">
+                        <option value="--- Select Option ---">--- Select Option ---</option>
+                        <optgroup label="Dice Values">
+                            <option value="aces">Aces</option>
+                            <option value="twos" disabled="true">Twos</option>
+                            <option value="threes">Threes</option>
+                            <option value="fours">Fours</option>
+                            <option value="fives">Fives</option>
+                            <option value="sixes">Sixes</option>
+                        </optgroup>
+                        <optgroup label="Poker Values">
+                            <option value="onePair">One Pair</option>
+                            <option value="twoPair">Two Pair</option>
+                            <option value="threeOfAKind">Three of a Kind</option>
+                            <option value="fourOfAKind">Four of a Kind</option>
+                            <option value="smallStraight">Small Straight</option>
+                            <option value="largeStraight">Large Straight</option>
+                            <option value="fullHouse">Full House</option>
+                            <option value="yahtzee">Yahtzee</option>
+                            <option value="chance">Chance</option>
+                        </optgroup>
+                    </select>
+                    <button type="submit">Save Result</button>
+                </form>
             </div>
-            <button role="diceLock" data-locked="false" data-diceSlot="2">Lock</button>
         </div>
-        <div class="diceBlock">
-            <div class="diceHolder" data-locked="false" data-diceSlot="3">
-                <img src="./assets/media/images/dice3.png" alt="3">
+        <!-- //.gameButtonArea -->
+
+        <!-- Score Area -->
+        <div id="scoreArea">
+            <div id="gameScoreTable">
+                <div class="column" id="scoreCategoryCol">
+                    <div class="catNameHolder scoreHeader">Score Category</div>
+                    <div class="catNameHolder">Aces</div>
+                    <div class="catNameHolder">Twos</div>
+                    <div class="catNameHolder">Threes</div>
+                    <div class="catNameHolder">Fours</div>
+                    <div class="catNameHolder">Fives</div>
+                    <div class="catNameHolder">Sixes</div>
+                    <div class="catNameHolder" role="upperSum">SUM</div>
+                    <div class="catNameHolder" role="upperBonus">BONUS</div>
+                    <div class="catNameHolder">One Pair</div>
+                    <div class="catNameHolder">Two Pair</div>
+                    <div class="catNameHolder">Three of a Kind</div>
+                    <div class="catNameHolder">Four of a Kind</div>
+                    <div class="catNameHolder">Small Straight</div>
+                    <div class="catNameHolder">Large Straight</div>
+                    <div class="catNameHolder">Full House</div>
+                    <div class="catNameHolder">Yahtzee</div>
+                    <div class="catNameHolder">Chance</div>
+                    <div class="catNameHolder" role="totalScore">TOTAL SCORE</div>
+                </div>
+                <div class="column playerCol" data-playerNumber="0" data-currentPlayer="true">
+                    <div class="scoreHeader" role="playerName">--- Player 0 Name ---</div>
+                    <div class="scoreHolder" role="aces"></div>
+                    <div class="scoreHolder" role="twos">56</div>
+                    <div class="scoreHolder" role="threes"></div>
+                    <div class="scoreHolder" role="fours"></div>
+                    <div class="scoreHolder" role="fives"></div>
+                    <div class="scoreHolder" role="sixes"></div>
+                    <div class="scoreHolder" role="upperSum"></div>
+                    <div class="scoreHolder" role="upperBonus"></div>
+                    <div class="scoreHolder" role="onePair"></div>
+                    <div class="scoreHolder" role="twoPair"></div>
+                    <div class="scoreHolder" role="threeOfAKind"></div>
+                    <div class="scoreHolder" role="fourOfAKind"></div>
+                    <div class="scoreHolder" role="smallStraight"></div>
+                    <div class="scoreHolder" role="largeStraight"></div>
+                    <div class="scoreHolder" role="fullHouse"></div>
+                    <div class="scoreHolder" role="yahtzee"></div>
+                    <div class="scoreHolder" role="chance"></div>
+                    <div class="scoreHolder" role="totalScore"></div>
+                </div>
+                <div class="column playerCol" data-playerNumber="1" data-currentPlayer="false">
+                    <div class="scoreHeader" role="playerName">--- Player 1 Name ---</div>
+                    <div class="scoreHolder" role="aces"></div>
+                    <div class="scoreHolder" role="twos">78</div>
+                    <div class="scoreHolder" role="threes"></div>
+                    <div class="scoreHolder" role="fours"></div>
+                    <div class="scoreHolder" role="fives"></div>
+                    <div class="scoreHolder" role="sixes"></div>
+                    <div class="scoreHolder" role="upperSum"></div>
+                    <div class="scoreHolder" role="upperBonus"></div>
+                    <div class="scoreHolder" role="onePair"></div>
+                    <div class="scoreHolder" role="twoPair"></div>
+                    <div class="scoreHolder" role="threeOfAKind"></div>
+                    <div class="scoreHolder" role="fourOfAKind"></div>
+                    <div class="scoreHolder" role="smallStraight"></div>
+                    <div class="scoreHolder" role="largeStraight"></div>
+                    <div class="scoreHolder" role="fullHouse"></div>
+                    <div class="scoreHolder" role="yahtzee"></div>
+                    <div class="scoreHolder" role="chance"></div>
+                    <div class="scoreHolder" role="totalScore"></div>
+                </div>
+                <div class="column playerCol" data-playerNumber="2" data-currentPlayer="false">
+                    <div class="scoreHeader" role="playerName">--- Player 2 Name ---</div>
+                    <div class="scoreHolder" role="aces"></div>
+                    <div class="scoreHolder" role="twos"></div>
+                    <div class="scoreHolder" role="threes"></div>
+                    <div class="scoreHolder" role="fours"></div>
+                    <div class="scoreHolder" role="fives"></div>
+                    <div class="scoreHolder" role="sixes"></div>
+                    <div class="scoreHolder" role="upperSum"></div>
+                    <div class="scoreHolder" role="upperBonus"></div>
+                    <div class="scoreHolder" role="onePair"></div>
+                    <div class="scoreHolder" role="twoPair"></div>
+                    <div class="scoreHolder" role="threeOfAKind"></div>
+                    <div class="scoreHolder" role="fourOfAKind"></div>
+                    <div class="scoreHolder" role="smallStraight"></div>
+                    <div class="scoreHolder" role="largeStraight"></div>
+                    <div class="scoreHolder" role="fullHouse"></div>
+                    <div class="scoreHolder" role="yahtzee"></div>
+                    <div class="scoreHolder" role="chance"></div>
+                    <div class="scoreHolder" role="totalScore"></div>
+                </div>
+                <div class="column playerCol" data-playerNumber="3" data-currentPlayer="false">
+                    <div class="scoreHeader" role="playerName">--- Player 3 Name ---</div>
+                    <div class="scoreHolder" role="aces"></div>
+                    <div class="scoreHolder" role="twos">24</div>
+                    <div class="scoreHolder" role="threes"></div>
+                    <div class="scoreHolder" role="fours"></div>
+                    <div class="scoreHolder" role="fives"></div>
+                    <div class="scoreHolder" role="sixes"></div>
+                    <div class="scoreHolder" role="upperSum"></div>
+                    <div class="scoreHolder" role="upperBonus"></div>
+                    <div class="scoreHolder" role="onePair"></div>
+                    <div class="scoreHolder" role="twoPair"></div>
+                    <div class="scoreHolder" role="threeOfAKind"></div>
+                    <div class="scoreHolder" role="fourOfAKind"></div>
+                    <div class="scoreHolder" role="smallStraight"></div>
+                    <div class="scoreHolder" role="largeStraight"></div>
+                    <div class="scoreHolder" role="fullHouse"></div>
+                    <div class="scoreHolder" role="yahtzee"></div>
+                    <div class="scoreHolder" role="chance"></div>
+                    <div class="scoreHolder" role="totalScore"></div>
+                </div>
+                <div class="column playerCol" data-playerNumber="4" data-currentPlayer="false">
+                    <div class="scoreHeader" role="playerName">--- Player 4 Name ---</div>
+                    <div class="scoreHolder" role="aces"></div>
+                    <div class="scoreHolder" role="twos"></div>
+                    <div class="scoreHolder" role="threes"></div>
+                    <div class="scoreHolder" role="fours"></div>
+                    <div class="scoreHolder" role="fives"></div>
+                    <div class="scoreHolder" role="sixes"></div>
+                    <div class="scoreHolder" role="upperSum"></div>
+                    <div class="scoreHolder" role="upperBonus"></div>
+                    <div class="scoreHolder" role="onePair"></div>
+                    <div class="scoreHolder" role="twoPair"></div>
+                    <div class="scoreHolder" role="threeOfAKind"></div>
+                    <div class="scoreHolder" role="fourOfAKind"></div>
+                    <div class="scoreHolder" role="smallStraight"></div>
+                    <div class="scoreHolder" role="largeStraight"></div>
+                    <div class="scoreHolder" role="fullHouse"></div>
+                    <div class="scoreHolder" role="yahtzee"></div>
+                    <div class="scoreHolder" role="chance"></div>
+                    <div class="scoreHolder" role="totalScore"></div>
+                </div>
+                <div class="column playerCol" data-playerNumber="5" data-currentPlayer="false">
+                    <div class="scoreHeader" role="playerName">--- Player 5 Name ---</div>
+                    <div class="scoreHolder" role="aces">5</div>
+                    <div class="scoreHolder" role="twos"></div>
+                    <div class="scoreHolder" role="threes"></div>
+                    <div class="scoreHolder" role="fours"></div>
+                    <div class="scoreHolder" role="fives"></div>
+                    <div class="scoreHolder" role="sixes"></div>
+                    <div class="scoreHolder" role="upperSum"></div>
+                    <div class="scoreHolder" role="upperBonus"></div>
+                    <div class="scoreHolder" role="onePair"></div>
+                    <div class="scoreHolder" role="twoPair"></div>
+                    <div class="scoreHolder" role="threeOfAKind"></div>
+                    <div class="scoreHolder" role="fourOfAKind"></div>
+                    <div class="scoreHolder" role="smallStraight"></div>
+                    <div class="scoreHolder" role="largeStraight"></div>
+                    <div class="scoreHolder" role="fullHouse"></div>
+                    <div class="scoreHolder" role="yahtzee"></div>
+                    <div class="scoreHolder" role="chance"></div>
+                    <div class="scoreHolder" role="totalScore"></div>
+                </div>
             </div>
-            <button role="diceLock" data-locked="false" data-diceSlot="3">Lock</button>
         </div>
-        <div class="diceBlock">
-            <div class="diceHolder" data-locked="false" data-diceSlot="4">
-                <img src="./assets/media/images/dice4.png" alt="4">
-            </div>
-            <button role="diceLock" data-locked="false" data-diceSlot="4">Lock</button>
-        </div>
-        <div class="diceBlock">
-            <div class="diceHolder" data-locked="false" data-diceSlot="5">
-                <img src="./assets/media/images/dice5.png" alt="5">
-            </div>
-            <button role="diceLock" data-locked="false" data-diceSlot="5">Lock</button>
-        </div>
+        <!-- //.scoreArea -->
     </div>
-    <!-- //..diceArea -->
-
-    <!-- Game Button Area -->
-    <div id="gameButtonArea">
-        <div id="rollDiceSection">
-            <span>(Player 1 name)'s turn</span>
-            <button id="rollDiceButton">Roll Dice</button>
-            <span>2 throws left</span>
-        </div>
-        
-        <div id="saveRollResultSection">
-            <form class="saveRollResult" autocomplete="off">
-                <select id="scoreSectionSelect" name="scoreSectionSelect">
-                    <option value="--- Select Option ---">--- Select Option ---</option>
-                    <optgroup label="Dice Values">
-                        <option value="aces">Aces</option>
-                        <option value="twos" disabled="true">Twos</option>
-                        <option value="threes">Threes</option>
-                        <option value="fours">Fours</option>
-                        <option value="fives">Fives</option>
-                        <option value="sixes">Sixes</option>
-                    </optgroup>
-                    <optgroup label="Poker Values">
-                        <option value="onePair">One Pair</option>
-                        <option value="twoPair">Two Pair</option>
-                        <option value="threeOfAKind">Three of a Kind</option>
-                        <option value="fourOfAKind">Four of a Kind</option>
-                        <option value="smallStraight">Small Straight</option>
-                        <option value="largeStraight">Large Straight</option>
-                        <option value="fullHouse">Full House</option>
-                        <option value="yahtzee">Yahtzee</option>
-                        <option value="chance">Chance</option>
-                    </optgroup>
-                </select>
-                <button type="submit">Save Result</button>
-            </form>
-        </div>
-    </div>
-    <!-- //.gameButtonArea -->
-
-    <!-- Score Area -->
-    <div id="scoreArea">
-        <div id="gameScoreTable">
-            <div class="column" id="scoreCategoryCol">
-                <div class="catNameHolder scoreHeader">Score Category</div>
-                <div class="catNameHolder">Aces</div>
-                <div class="catNameHolder">Twos</div>
-                <div class="catNameHolder">Threes</div>
-                <div class="catNameHolder">Fours</div>
-                <div class="catNameHolder">Fives</div>
-                <div class="catNameHolder">Sixes</div>
-                <div class="catNameHolder" role="upperSum">SUM</div>
-                <div class="catNameHolder" role="upperBonus">BONUS</div>
-                <div class="catNameHolder">One Pair</div>
-                <div class="catNameHolder">Two Pair</div>
-                <div class="catNameHolder">Three of a Kind</div>
-                <div class="catNameHolder">Four of a Kind</div>
-                <div class="catNameHolder">Small Straight</div>
-                <div class="catNameHolder">Large Straight</div>
-                <div class="catNameHolder">Full House</div>
-                <div class="catNameHolder">Yahtzee</div>
-                <div class="catNameHolder">Chance</div>
-                <div class="catNameHolder" role="totalScore">TOTAL SCORE</div>
-            </div>
-            <div class="column playerCol" data-playerNumber="0" data-currentPlayer="true">
-                <div class="scoreHeader" role="playerName">--- Player 0 Name ---</div>
-                <div class="scoreHolder" role="aces"></div>
-                <div class="scoreHolder" role="twos">56</div>
-                <div class="scoreHolder" role="threes"></div>
-                <div class="scoreHolder" role="fours"></div>
-                <div class="scoreHolder" role="fives"></div>
-                <div class="scoreHolder" role="sixes"></div>
-                <div class="scoreHolder" role="upperSum"></div>
-                <div class="scoreHolder" role="upperBonus"></div>
-                <div class="scoreHolder" role="onePair"></div>
-                <div class="scoreHolder" role="twoPair"></div>
-                <div class="scoreHolder" role="threeOfAKind"></div>
-                <div class="scoreHolder" role="fourOfAKind"></div>
-                <div class="scoreHolder" role="smallStraight"></div>
-                <div class="scoreHolder" role="largeStraight"></div>
-                <div class="scoreHolder" role="fullHouse"></div>
-                <div class="scoreHolder" role="yahtzee"></div>
-                <div class="scoreHolder" role="chance"></div>
-                <div class="scoreHolder" role="totalScore"></div>
-            </div>
-            <div class="column playerCol" data-playerNumber="1" data-currentPlayer="false">
-                <div class="scoreHeader" role="playerName">--- Player 1 Name ---</div>
-                <div class="scoreHolder" role="aces"></div>
-                <div class="scoreHolder" role="twos">78</div>
-                <div class="scoreHolder" role="threes"></div>
-                <div class="scoreHolder" role="fours"></div>
-                <div class="scoreHolder" role="fives"></div>
-                <div class="scoreHolder" role="sixes"></div>
-                <div class="scoreHolder" role="upperSum"></div>
-                <div class="scoreHolder" role="upperBonus"></div>
-                <div class="scoreHolder" role="onePair"></div>
-                <div class="scoreHolder" role="twoPair"></div>
-                <div class="scoreHolder" role="threeOfAKind"></div>
-                <div class="scoreHolder" role="fourOfAKind"></div>
-                <div class="scoreHolder" role="smallStraight"></div>
-                <div class="scoreHolder" role="largeStraight"></div>
-                <div class="scoreHolder" role="fullHouse"></div>
-                <div class="scoreHolder" role="yahtzee"></div>
-                <div class="scoreHolder" role="chance"></div>
-                <div class="scoreHolder" role="totalScore"></div>
-            </div>
-            <div class="column playerCol" data-playerNumber="2" data-currentPlayer="false">
-                <div class="scoreHeader" role="playerName">--- Player 2 Name ---</div>
-                <div class="scoreHolder" role="aces"></div>
-                <div class="scoreHolder" role="twos"></div>
-                <div class="scoreHolder" role="threes"></div>
-                <div class="scoreHolder" role="fours"></div>
-                <div class="scoreHolder" role="fives"></div>
-                <div class="scoreHolder" role="sixes"></div>
-                <div class="scoreHolder" role="upperSum"></div>
-                <div class="scoreHolder" role="upperBonus"></div>
-                <div class="scoreHolder" role="onePair"></div>
-                <div class="scoreHolder" role="twoPair"></div>
-                <div class="scoreHolder" role="threeOfAKind"></div>
-                <div class="scoreHolder" role="fourOfAKind"></div>
-                <div class="scoreHolder" role="smallStraight"></div>
-                <div class="scoreHolder" role="largeStraight"></div>
-                <div class="scoreHolder" role="fullHouse"></div>
-                <div class="scoreHolder" role="yahtzee"></div>
-                <div class="scoreHolder" role="chance"></div>
-                <div class="scoreHolder" role="totalScore"></div>
-            </div>
-            <div class="column playerCol" data-playerNumber="3" data-currentPlayer="false">
-                <div class="scoreHeader" role="playerName">--- Player 3 Name ---</div>
-                <div class="scoreHolder" role="aces"></div>
-                <div class="scoreHolder" role="twos">24</div>
-                <div class="scoreHolder" role="threes"></div>
-                <div class="scoreHolder" role="fours"></div>
-                <div class="scoreHolder" role="fives"></div>
-                <div class="scoreHolder" role="sixes"></div>
-                <div class="scoreHolder" role="upperSum"></div>
-                <div class="scoreHolder" role="upperBonus"></div>
-                <div class="scoreHolder" role="onePair"></div>
-                <div class="scoreHolder" role="twoPair"></div>
-                <div class="scoreHolder" role="threeOfAKind"></div>
-                <div class="scoreHolder" role="fourOfAKind"></div>
-                <div class="scoreHolder" role="smallStraight"></div>
-                <div class="scoreHolder" role="largeStraight"></div>
-                <div class="scoreHolder" role="fullHouse"></div>
-                <div class="scoreHolder" role="yahtzee"></div>
-                <div class="scoreHolder" role="chance"></div>
-                <div class="scoreHolder" role="totalScore"></div>
-            </div>
-            <div class="column playerCol" data-playerNumber="4" data-currentPlayer="false">
-                <div class="scoreHeader" role="playerName">--- Player 4 Name ---</div>
-                <div class="scoreHolder" role="aces"></div>
-                <div class="scoreHolder" role="twos"></div>
-                <div class="scoreHolder" role="threes"></div>
-                <div class="scoreHolder" role="fours"></div>
-                <div class="scoreHolder" role="fives"></div>
-                <div class="scoreHolder" role="sixes"></div>
-                <div class="scoreHolder" role="upperSum"></div>
-                <div class="scoreHolder" role="upperBonus"></div>
-                <div class="scoreHolder" role="onePair"></div>
-                <div class="scoreHolder" role="twoPair"></div>
-                <div class="scoreHolder" role="threeOfAKind"></div>
-                <div class="scoreHolder" role="fourOfAKind"></div>
-                <div class="scoreHolder" role="smallStraight"></div>
-                <div class="scoreHolder" role="largeStraight"></div>
-                <div class="scoreHolder" role="fullHouse"></div>
-                <div class="scoreHolder" role="yahtzee"></div>
-                <div class="scoreHolder" role="chance"></div>
-                <div class="scoreHolder" role="totalScore"></div>
-            </div>
-            <div class="column playerCol" data-playerNumber="5" data-currentPlayer="false">
-                <div class="scoreHeader" role="playerName">--- Player 5 Name ---</div>
-                <div class="scoreHolder" role="aces">5</div>
-                <div class="scoreHolder" role="twos"></div>
-                <div class="scoreHolder" role="threes"></div>
-                <div class="scoreHolder" role="fours"></div>
-                <div class="scoreHolder" role="fives"></div>
-                <div class="scoreHolder" role="sixes"></div>
-                <div class="scoreHolder" role="upperSum"></div>
-                <div class="scoreHolder" role="upperBonus"></div>
-                <div class="scoreHolder" role="onePair"></div>
-                <div class="scoreHolder" role="twoPair"></div>
-                <div class="scoreHolder" role="threeOfAKind"></div>
-                <div class="scoreHolder" role="fourOfAKind"></div>
-                <div class="scoreHolder" role="smallStraight"></div>
-                <div class="scoreHolder" role="largeStraight"></div>
-                <div class="scoreHolder" role="fullHouse"></div>
-                <div class="scoreHolder" role="yahtzee"></div>
-                <div class="scoreHolder" role="chance"></div>
-                <div class="scoreHolder" role="totalScore"></div>
-            </div>
-        </div>
-    </div>
-    <!-- //.scoreArea -->
     <script>
 
     /* -------------------------------- Roll Dice -------------------------------- */ 
