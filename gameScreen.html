@@ -37,33 +37,23 @@
         <!-- Dice Area -->
         <div id="diceArea">
             <div class="diceBlock">
-                <div class="diceHolder" data-locked="false" data-diceSlot="1">
-                    <img src="./assets/media/images/dice6.png" alt="6">
-                </div>
+                <div class="diceHolder" data-locked="false" data-diceSlot="1"></div>
                 <button role="diceLock" data-locked="false" data-diceSlot="1">Lock</button>
             </div>
             <div class="diceBlock">
-                <div class="diceHolder" data-locked="false" data-diceSlot="2">
-                    <img src="./assets/media/images/dice2.png" alt="2">
-                </div>
+                <div class="diceHolder" data-locked="false" data-diceSlot="2"></div>
                 <button role="diceLock" data-locked="false" data-diceSlot="2">Lock</button>
             </div>
             <div class="diceBlock">
-                <div class="diceHolder" data-locked="false" data-diceSlot="3">
-                    <img src="./assets/media/images/dice3.png" alt="3">
-                </div>
+                <div class="diceHolder" data-locked="false" data-diceSlot="3"></div>
                 <button role="diceLock" data-locked="false" data-diceSlot="3">Lock</button>
             </div>
             <div class="diceBlock">
-                <div class="diceHolder" data-locked="false" data-diceSlot="4">
-                    <img src="./assets/media/images/dice4.png" alt="4">
-                </div>
+                <div class="diceHolder" data-locked="false" data-diceSlot="4"></div>
                 <button role="diceLock" data-locked="false" data-diceSlot="4">Lock</button>
             </div>
             <div class="diceBlock">
-                <div class="diceHolder" data-locked="false" data-diceSlot="5">
-                    <img src="./assets/media/images/dice5.png" alt="5">
-                </div>
+                <div class="diceHolder" data-locked="false" data-diceSlot="5"></div>
                 <button role="diceLock" data-locked="false" data-diceSlot="5">Lock</button>
             </div>
         </div>
@@ -271,20 +261,29 @@
         const saveDiceForm = document.querySelector('.saveRollResult');
         let diceResultArray = [];
 
+        /* State */
+        let currentPlayer = 0;
+        let rollTurn = 1;
+
         /* Functions */
 
         function handleRollDice(event) {
-            console.log('Roll Dice!');
+            if(rollTurn === 3) {
+                rollDiceButton.setAttribute('disabled', 'true');
+            }
+            rollTurn += 1;
+
+            //console.log('Rolling Dice!');
             
             let rollArray = [];
 
             diceHolders.forEach( diceHolder => {
                 // 1) Identify (+ store?) all non-locked in dice slots
                 if(diceHolder.dataset.locked === 'true') {
-                    console.log(`Diceslot ${diceHolder.dataset.diceslot} is locked`); // <--------------
+                    //console.log(`Diceslot ${diceHolder.dataset.diceslot} is locked`); // <--------------
                     return;
                 } 
-                console.log(`Diceslot ${diceHolder.dataset.diceslot} is NOT locked`); // <--------------
+                //console.log(`Diceslot ${diceHolder.dataset.diceslot} is NOT locked`); // <--------------
                 // 2) Empty all non-locked in dice slots
                 diceHolder.innerHTML = '';
                 // 3) Roll dice: Return a random number between 1 and 6
@@ -340,6 +339,22 @@
             console.log(chosenCategory, diceResultArray);
             // Reset dropwdown menu to "Select Option"
             document.getElementById("scoreSectionSelect").selectedIndex = 0;
+
+            // Reset rollTurn to 1 + Un-disable rollDice button
+            rollTurn = 1;
+            rollDiceButton.removeAttribute('disabled');
+
+            // Clear the diceHolders of their images + set data-locked to 'false'
+            diceHolders.forEach( (diceHolder) => {
+                diceHolder.innerHTML = '';
+                diceHolder.setAttribute('data-locked', 'false');
+            });
+
+            // Unselect diceLock buttons
+            diceLockButtons.forEach( button => {
+                button.setAttribute('data-locked', 'false');
+                button.textContent = 'Lock';
+            });
 
             /* -------------------- Left to do: -------------------- */
             // Store currentPlayer

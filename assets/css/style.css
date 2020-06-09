@@ -390,6 +390,14 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--pink);
     border: 2px solid var(--pink);
 }
+
+button#rollDiceButton[disabled="true"] {
+    background-color: #b3b0b0;
+    color: var(--grey);
+    --bs-color: rgba(0,0,0,0.6);
+    box-shadow: inset 0 -2px 5px var(--bs-color);
+}
+
 /* ----------------------- //.diceArea ----------------------- */
 
 /* ----------------------- Game Button Area ----------------------- */
