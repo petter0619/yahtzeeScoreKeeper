@@ -389,6 +389,21 @@
             // Set chosenCategory (aka playerInstance property) to diceResultArray
             playerInstanceArray[ currentPlayer ][ chosenCategory ] = diceResultArray;
 
+            /* ----------------- Update Score Area ----------------- */
+
+            // Identify DIV to place score in:
+            const divToUpdate = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="${chosenCategory}"]`);
+
+            console.log(divToUpdate);
+
+            // Grab the diceResultArray
+            const arrayToUse = playerInstanceArray[ currentPlayer ][ chosenCategory ]; // Dice Values = numbers
+            console.log( arrayToUse );
+
+            const scoreToEnter = arrayToUse.reduce();
+            
+
+
             /* ----------------- CurrentPlayer ----------------- */
 
              // Increment CurrentPlayer state

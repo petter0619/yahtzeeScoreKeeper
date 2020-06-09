@@ -260,7 +260,7 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
 }
 
 .modal-inner div li {
-    font-size: 1.5em;
+    font-size: 0.7em;
 }
 
 .modal-inner div > img {
