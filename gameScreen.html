@@ -397,7 +397,6 @@
                 // Update roundCounter header (needs to be done right as currentPlayer is updated...)
                 roundTurn += 1;
                 document.querySelector('#roundCounter').textContent = `Round ${roundTurn} of 15`;
-                console.log(roundTurn);
             } else {
                 currentPlayer += 1;
             }
@@ -410,7 +409,8 @@
             /* -------------------- Left to do: -------------------- */
 
             // -------> Update scoreArea with result
-            // -------> Security check / remove options ----- Store which scoreCategory currentPlayer somehow... so it can be removed from dropdown...
+            // Add array together
+            // -------> Security check / remove options ----- Store which scoreCategory currentPlayer somehow... so it can be removed from dropdown..
 
         }
 
@@ -443,6 +443,11 @@
 
             // Update playerTurnText
             document.querySelector('#playerTurnText').textContent = `${playerInstanceArray[ currentPlayer ].name}'s turn`;
+
+            // Update currentPlayer scoreColumn
+            document.querySelector(`[data-playernumber="${currentPlayer}"]`).setAttribute('data-currentplayer','true');
+            document.querySelector(`[data-playernumber="${ currentPlayer === 0 ? playerInstanceArray.length - 1 : currentPlayer - 1 }"]`).setAttribute('data-currentplayer','false');
+
         }
 
 
