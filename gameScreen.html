@@ -254,11 +254,12 @@
     <script>
 
     /* -------------------------------- Roll Dice -------------------------------- */ 
-        /* Variables */
+        /* Variables */ // ---> NOTE: Can't have any variables here that WON'T be here on pageLoad 
         const diceHolders = Array.from(document.querySelectorAll('.diceHolder'));                   // Wrapper for the dice images
         const diceLockButtons = document.querySelectorAll('button[role="diceLock"]');
         const rollDiceButton = document.querySelector('#rollDiceButton');
         const saveDiceForm = document.querySelector('.saveRollResult');
+        const playerScoreColums = Array.from(document.querySelectorAll('[data-playerNumber]'));
         let diceResultArray = [];
 
         /* State */
@@ -293,14 +294,65 @@
             this.chance = null;
         }
 
+        Player.prototype.calculateScore = function(scoreCategory) {
+            return this[scoreCategory]; // = the diceResultArray stored in the instance
+
+            /*
+            ----------- Yahtzee Scores + Requirements -----------
+
+            aces = sum of all 1's in array (if no 1's, score = 0)
+            twos = sum of all 2's in array (if no 2's, score = 0)
+            threes = sum of all 3's in array (if no 3's, score = 0)
+            fours = sum of all 4's in array (if no 4's, score = 0)
+            fives = sum of all 5's in array (if no 5's, score = 0)
+            sixes =sum of all 6's in array (if no 6's, score = 0)
+
+            upperSum = (total of aces-sixes scores)
+            upperBonus = +50 points IF upperSUM = 63+
+            
+            onePair = sum of the highest pair of matching dice values (if no pair, score = 0); count values
+            twoPair = sum of the 2 matching pairs of dice values (if no pairs or only 1 pair, score = 0); count values
+            threeOfAKind = sum of the 3 matching dice values (if no 3 matching dice values, score = 0); count values
+            fourofAKind = sum of the 4 matching dice values (if no 4 matching dice values, score = 0); count values
+            smallStraight = 15 points (+ dice values MUST be 1,2,3,4,5)
+                -- .match()
+
+            largeStraight = 20 points (+ dice values MUST be 2,3,4,5,6)
+            fullHouse = sum of dice values (MUST contain 1 matching pair of 2 values + 3 matching dice values); count values
+            yahtzee = 50 points (all dice must have same value)
+            chance = sum of all dice values in array
+
+
+            ----> Count number of instances:
+            function instanceCounter(tally, arrayItem) {
+                tally[arrayItem] = (tally[arrayItem] || 0) + 1;
+                return tally;
+            }
+            const integerTally = A.reduce(instanceCounter, {});
+
+            */
+
+        }
+
         function startGame() {
 
             // Populate playerInstanceArray
-            playerInstanceArray = [ new Player('Player 1 (0)'), new Player('Player 2 (1)'), new Player('Player 3 (2)'), new Player('Player 4 (3)'), new Player('Player 5 (4)'), new Player('Player 6 (5)')];
+            playerInstanceArray = [ new Player('Player 0'), new Player('Player 1'), new Player('Player 2'), new Player('Player 3'),new Player('Player 4'), new Player('Player 5')];
 
             // Set initial playerTurnText
             document.querySelector('#playerTurnText').textContent = `${playerInstanceArray[ currentPlayer ].name}'s turn`;
             
+            // Remove non-needed scoreColumns + add playerName to scoreColumn header
+            playerScoreColums.forEach(column => {
+                // display: none; column if playerInstance not in playerInstanceArray
+                if(parseInt(column.dataset.playernumber) >= playerInstanceArray.length) {
+                    column.setAttribute('style', 'display: none;');
+                    return;
+                }
+                // Add playerInstance.name to each respective players scoreColumn header
+                column.querySelector('div[role="playerName"]').textContent = playerInstanceArray[ parseInt(column.dataset.playernumber) ].name;
+            });
+
         }
         startGame() //<---------------------------------------
 
@@ -331,9 +383,9 @@
                 rollArray.push([diceHolder, diceRoll]);
             } );
             // Run a FOR loop to slow down the placing of rollDice results on page ('i = 1' to slow down presentation of 1st result)
-            for(let i = 0; i < rollArray.length; i++) {
+            for(let i = 1; i < rollArray.length + 1; i++) {
                 setTimeout(function() {
-                rollArray[i][0].innerHTML = `<img src="./assets/media/images/dice${rollArray[i][1]}.png" alt="${rollArray[i][1]}">`
+                rollArray[i - 1][0].innerHTML = `<img src="./assets/media/images/dice${rollArray[i - 1][1]}.png" alt="${rollArray[i - 1][1]}">`
                 }, 750 * i);
             }
             // Update 'X throws left' text
@@ -394,13 +446,14 @@
             // Identify DIV to place score in:
             const divToUpdate = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="${chosenCategory}"]`);
 
+            // playerScoreColums.find()
+
             console.log(divToUpdate);
 
             // Grab the diceResultArray
             const arrayToUse = playerInstanceArray[ currentPlayer ][ chosenCategory ]; // Dice Values = numbers
             console.log( arrayToUse );
-
-            const scoreToEnter = arrayToUse.reduce();
+            
             
 
 
