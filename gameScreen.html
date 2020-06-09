@@ -38,23 +38,23 @@
         <div id="diceArea">
             <div class="diceBlock">
                 <div class="diceHolder" data-locked="false" data-diceSlot="1"></div>
-                <button role="diceLock" data-locked="false" data-diceSlot="1">Lock</button>
+                <button role="diceLock" data-locked="false" data-diceSlot="1" disabled="true">Lock</button>
             </div>
             <div class="diceBlock">
                 <div class="diceHolder" data-locked="false" data-diceSlot="2"></div>
-                <button role="diceLock" data-locked="false" data-diceSlot="2">Lock</button>
+                <button role="diceLock" data-locked="false" data-diceSlot="2" disabled="true">Lock</button>
             </div>
             <div class="diceBlock">
                 <div class="diceHolder" data-locked="false" data-diceSlot="3"></div>
-                <button role="diceLock" data-locked="false" data-diceSlot="3">Lock</button>
+                <button role="diceLock" data-locked="false" data-diceSlot="3" disabled="true">Lock</button>
             </div>
             <div class="diceBlock">
                 <div class="diceHolder" data-locked="false" data-diceSlot="4"></div>
-                <button role="diceLock" data-locked="false" data-diceSlot="4">Lock</button>
+                <button role="diceLock" data-locked="false" data-diceSlot="4" disabled="true">Lock</button>
             </div>
             <div class="diceBlock">
                 <div class="diceHolder" data-locked="false" data-diceSlot="5"></div>
-                <button role="diceLock" data-locked="false" data-diceSlot="5">Lock</button>
+                <button role="diceLock" data-locked="false" data-diceSlot="5" disabled="true">Lock</button>
             </div>
         </div>
         <!-- //..diceArea -->
@@ -62,9 +62,9 @@
         <!-- Game Button Area -->
         <div id="gameButtonArea">
             <div id="rollDiceSection">
-                <span>(Player 1 name)'s turn</span>
+                <span id="playerTurnText">(Player 1 name)'s turn</span>
                 <button id="rollDiceButton">Roll Dice</button>
-                <span>2 throws left</span>
+                <span id="throwsLeftText">2 throws left</span>
             </div>
             
             <div id="saveRollResultSection">
@@ -91,7 +91,7 @@
                             <option value="chance">Chance</option>
                         </optgroup>
                     </select>
-                    <button type="submit">Save Result</button>
+                    <button type="submit" id="saveRollResultButton" disabled="true">Save Result</button>
                 </form>
             </div>
         </div>
@@ -268,6 +268,12 @@
         /* Functions */
 
         function handleRollDice(event) {
+            if(rollTurn === 1) {
+                diceLockButtons.forEach( button => {
+                    button.removeAttribute('disabled');
+                });
+                document.querySelector('#saveRollResultButton').removeAttribute('disabled');
+            }
             if(rollTurn === 3) {
                 rollDiceButton.setAttribute('disabled', 'true');
             }
@@ -332,6 +338,10 @@
             
             // Store the dice values in the diceResultArray
             diceHolders.forEach( (diceHolder, index) => {
+                // Check if any diceSlots are empty
+                if( !diceHolder.querySelector('img') ) {
+                    throw new Error(`Dice slot number ${index + 1} is empty.`);
+                }
                 const diceValue = parseInt(diceHolder.querySelector('img').alt);
                 // Send results into diceResultArray (could also use .splice() along w. the 'index' param...)
                 diceResultArray.push(diceValue);
@@ -350,11 +360,18 @@
                 diceHolder.setAttribute('data-locked', 'false');
             });
 
-            // Unselect diceLock buttons
+            // Unselect diceLock buttons + disable them
             diceLockButtons.forEach( button => {
                 button.setAttribute('data-locked', 'false');
                 button.textContent = 'Lock';
+                button.setAttribute('disabled', 'true');
             });
+
+            // Disable 'Save Result' button until after 1st rollDice
+            document.querySelector('#saveRollResultButton').setAttribute('disabled', 'true');
+
+            // Reset 'X throws left' text
+            document.querySelector('#throwsLeftText').textContent = '3 throws left';
 
             /* -------------------- Left to do: -------------------- */
             // Store currentPlayer

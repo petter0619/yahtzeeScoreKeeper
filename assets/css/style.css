@@ -48,6 +48,16 @@ h1, h2, h3, h4, h5, h6 {
   text-shadow: var(--text-shadow);
 }
 
+a.button[disabled="true"], button[disabled="true"], input[type="button"][disabled="true"] {
+    background-color: #b3b0b0;
+    color: var(--grey);
+}
+
+a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="button"][disabled="true"]:hover {
+    background-color: #b3b0b0;
+    color: var(--grey);
+}
+
 /* -------------------------- Top Navigation -------------------------- */
 
 .topnav {
@@ -392,8 +402,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 button#rollDiceButton[disabled="true"] {
-    background-color: #b3b0b0;
-    color: var(--grey);
     --bs-color: rgba(0,0,0,0.6);
     box-shadow: inset 0 -2px 5px var(--bs-color);
 }
