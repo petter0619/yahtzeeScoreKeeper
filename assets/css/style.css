@@ -496,6 +496,15 @@ select[name="scoreSectionSelect"] {
     text-align: center;
 }
 
+div[data-currentPlayer="true"] > div[role="playerName"] {
+    background: var(--yellow) !important;
+    color: black !important;
+}
+
+div[data-currentPlayer="true"] > div.scoreHolder {
+    background: #ffecac;
+}
+
 /* ----------------------- /.#gameScoreTableWrapper ----------------------- */
 
 
