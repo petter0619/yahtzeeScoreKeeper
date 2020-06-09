@@ -264,8 +264,44 @@
         /* State */
         let currentPlayer = 0;
         let rollTurn = 1;
+        let playerInstanceArray = [];
 
         /* Functions */
+
+        function Player(name) {
+            this.name = name;
+
+            // Properties for storing scoreResults
+            //Part 1
+            this.aces = null;
+            this.ones = null;
+            this.twos = null;
+            this.threes = null;
+            this.fours = null;
+            this.fives = null;
+            this.sixes = null;
+            //Part 2
+            this.onePair = null;
+            this.twoPair = null;
+            this.threeOfAKind = null;
+            this.fourOfAKind = null;
+            this.smallStraight = null;
+            this.largeStraight = null;
+            this.fullHouse = null;
+            this.yahtzee = null;
+            this.chance = null;
+        }
+
+        function startGame() {
+
+            // Populate playerInstanceArray
+            playerInstanceArray = [ new Player('Player 1 (0)'), new Player('Player 2 (1)'), new Player('Player 3 (2)'), new Player('Player 4 (3)'), new Player('Player 5 (4)'), new Player('Player 6 (5)')];
+
+            // Set initial playerTurnText
+            document.querySelector('#playerTurnText').textContent = `${playerInstanceArray[ currentPlayer ].name}'s turn`;
+            
+        }
+        startGame() //<---------------------------------------
 
         function handleRollDice(event) {
             if(rollTurn === 1) {
@@ -299,10 +335,8 @@
                 rollArray[i-1][0].innerHTML = `<img src="./assets/media/images/dice${rollArray[i-1][1]}.png" alt="${rollArray[i-1][1]}">`
                 }, 750 * i);
             }
-
             // Update 'X throws left' text
             document.querySelector('#throwsLeftText').textContent = `${4 - rollTurn} roll${ (4-rollTurn === 1 ? '' : 's' ) } left`;
-
         }
 
         function handleDiceLock(event) {
@@ -326,10 +360,15 @@
         function handleSaveDiceSubmit(event) {
             event.preventDefault();
             // If no valid options is chosen, send alert()
+
+            /* ----------------- Security check ----------------- */
             if(event.currentTarget.scoreSectionSelect.value === '--- Select Option ---') {
                 alert('Not a valid category. Please pick another.');
                 return;
             }
+
+            /* ----------------- Save Dice Results ----------------- */
+
             // Store the chosen scoreCategory
             const chosenCategory = event.currentTarget.scoreSectionSelect.value;
 
@@ -346,7 +385,11 @@
                 // Send results into diceResultArray (could also use .splice() along w. the 'index' param...)
                 diceResultArray.push(diceValue);
             });
-            console.log(chosenCategory, diceResultArray);
+            // Set chosenCategory (aka playerInstance property) to diceResultArray
+            playerInstanceArray[ currentPlayer ][ chosenCategory ] = diceResultArray;
+
+            /* ----------------- Reset Game Area ----------------- */
+
             // Reset dropwdown menu to "Select Option"
             document.getElementById("scoreSectionSelect").selectedIndex = 0;
 
