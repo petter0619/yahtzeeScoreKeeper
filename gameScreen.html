@@ -278,11 +278,11 @@
             // Properties for storing scoreResults
             //Part 1
             this.aces = null;
-            this.twos = [2,2,2,2,2];
-            this.threes = [3,3,3,3,3];
-            this.fours = [4,4,4,4,4];
-            this.fives = [5,5,5,5,5];
-            this.sixes = [6,6,6,6,6];
+            this.twos = null;
+            this.threes = null;
+            this.fours = null;
+            this.fives = null;
+            this.sixes = null;
             //Part 2
             this.onePair = null;
             this.twoPair = null;
@@ -292,7 +292,7 @@
             this.largeStraight = null;
             this.fullHouse = null;
             this.yahtzee = null;
-            this.chance = [1,1,1,1,1];
+            this.chance = null;
         }
 
         Player.prototype.calculateScore = function(scoreCategory) {
@@ -463,7 +463,7 @@
 
         // playerInstanceArray[0].totalScore()
         Player.prototype.totalScore = function() {
-            return Object.entries( this ).filter( arrayItem => {
+            const filledScores = Object.entries( this ).filter( arrayItem => {
                 if( arrayItem[0] === 'name' || arrayItem[0] === 'usedScoreCategories' ) {
                         return false;
                     } else if (arrayItem[1] === null){
@@ -471,14 +471,16 @@
                     } else {
                         return true;
                     }
-            })
-            .map( arrayItem => this.calculateScore(arrayItem[0]) )
-            .reduce( (accumulator, arrayItem) => accumulator + arrayItem );
+            });
+            if(filledScores.length === 0) {
+                return 0;
+            }
+            return filledScores.map( arrayItem => this.calculateScore(arrayItem[0]) ).reduce( (accumulator, arrayItem) => accumulator + arrayItem );
         }
 
         //playerInstanceArray[0].upperScore()
         Player.prototype.upperScore = function() {
-            return Object.entries( this ).filter( arrayItem => {
+            const filledScores = Object.entries( this ).filter( arrayItem => {
                 if( !arrayItem[0].match(/(aces|twos|threes|fours|fives|sixes)/g)  ) {
                         return false;
                     } else if (arrayItem[1] === null){
@@ -486,9 +488,11 @@
                     } else {
                         return true;
                     }
-            })
-            .map( arrayItem => this.calculateScore(arrayItem[0]) )
-            .reduce( (accumulator, arrayItem) => accumulator + arrayItem );
+            });
+            if(filledScores.length === 0) {
+                return 0;
+            }
+            return filledScores.map( arrayItem => this.calculateScore(arrayItem[0]) ).reduce( (accumulator, arrayItem) => accumulator + arrayItem );
         }
 
 
