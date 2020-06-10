@@ -277,7 +277,7 @@
 
             // Properties for storing scoreResults
             //Part 1
-            this.aces = [1,1,1,1,1];
+            this.aces = null;
             this.twos = [2,2,2,2,2];
             this.threes = [3,3,3,3,3];
             this.fours = [4,4,4,4,4];
@@ -462,7 +462,6 @@
 
 
         // playerInstanceArray[0].totalScore()
-
         Player.prototype.totalScore = function() {
             return Object.entries( this ).filter( arrayItem => {
                 if( arrayItem[0] === 'name' || arrayItem[0] === 'usedScoreCategories' ) {
@@ -478,10 +477,9 @@
         }
 
         //playerInstanceArray[0].upperScore()
-
         Player.prototype.upperScore = function() {
             return Object.entries( this ).filter( arrayItem => {
-                if( arrayItem[0] === 'name' || arrayItem[0] === 'usedScoreCategories' ) {
+                if( !arrayItem[0].match(/(aces|twos|threes|fours|fives|sixes)/g)  ) {
                         return false;
                     } else if (arrayItem[1] === null){
                         return false;
