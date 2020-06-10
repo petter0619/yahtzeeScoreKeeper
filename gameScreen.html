@@ -73,7 +73,7 @@
                         <option value="--- Select Option ---">--- Select Option ---</option>
                         <optgroup label="Dice Values">
                             <option value="aces">Aces</option>
-                            <option value="twos" disabled="true">Twos</option>
+                            <option value="twos">Twos</option>
                             <option value="threes">Threes</option>
                             <option value="fours">Fours</option>
                             <option value="fives">Fives</option>
@@ -260,6 +260,7 @@
         const rollDiceButton = document.querySelector('#rollDiceButton');
         const saveDiceForm = document.querySelector('.saveRollResult');
         const playerScoreColums = Array.from(document.querySelectorAll('[data-playerNumber]'));
+        const selectOptions = saveDiceForm.querySelectorAll('optgroup > option');
         let diceResultArray = [];
 
         /* State */
@@ -272,6 +273,7 @@
 
         function Player(name) {
             this.name = name;
+            this.usedScoreCategories = [];
 
             // Properties for storing scoreResults
             //Part 1
@@ -426,7 +428,7 @@
                 
                 case 'largeStraight':
                     if( [...this.largeStraight].sort().join('') === '23456' ) {
-                        return 25;
+                        return 20;
                     } else {
                         return 0;
                     }
@@ -570,17 +572,21 @@
 
             // Identify DIV to place score in:
             const divToUpdate = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="${chosenCategory}"]`);
+            
+            // Calculate score
+            const score = playerInstanceArray[ currentPlayer ].calculateScore( chosenCategory );
 
-            // playerScoreColums.find()
+            // Place score in correct DIV
+            divToUpdate.textContent = score;
 
-            console.log(divToUpdate);
-
-            // Grab the diceResultArray
-            const arrayToUse = playerInstanceArray[ currentPlayer ][ chosenCategory ]; // Dice Values = numbers
-            console.log( arrayToUse );
+            // Update totalScore + upperSum + upperBonus
             
             
-
+            /* ----------------- Remove <select> options for Player that have already been used... ----------------- */
+            
+            // Push chosenCategory (aka the used category) into playerInstance.usedScoreCategories array
+            playerInstanceArray[ currentPlayer ].usedScoreCategories.push( chosenCategory );
+            
 
             /* ----------------- CurrentPlayer ----------------- */
 
@@ -610,6 +616,16 @@
         function resetGameArea() {
             // Reset dropwdown menu to "Select Option"
             document.getElementById("scoreSectionSelect").selectedIndex = 0;
+
+            // Remove selectOptions already used by currentPlayer
+            selectOptions.forEach( option =>  {
+                if(playerInstanceArray[ currentPlayer ].usedScoreCategories.find( arrayItem => arrayItem === option.value )) {
+                    option.setAttribute('disabled', 'true');
+                } else {
+                    // Make sure all OTHER selectOptions are not disabled
+                    option.removeAttribute('disabled');
+                }
+            });
 
             // Reset rollTurn to 1 + Un-disable rollDice button
             rollTurn = 1;
@@ -649,7 +665,7 @@
         diceLockButtons.forEach( button => button.addEventListener('click', handleDiceLock));
         saveDiceForm.addEventListener('submit', handleSaveDiceSubmit);
         saveDiceForm.addEventListener('diceResultSaved', resetGameArea);
-
+        
 
     </script>
 
