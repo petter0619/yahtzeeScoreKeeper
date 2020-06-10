@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        /* ------------------ Score Arrays ------------------ */
+
+        function Player() {
+            // Dice Value Scores
+            this.aces = [1,1,3,1,5];
+            this.twos = [6,2,2,3,2];
+            this.threes = [5,3,3,3,3];
+            this.fours = [4,1,2,4,4];
+            this.fives = [5,2,5,6,5];
+            this.sixes = [6,6,6,6,1];
+
+            // Poker Scores
+            this.onePair = [6,1,2,6,2];
+            this.twoPair = [6,1,2,6,2];
+            this.threeOfAKind = [6,3,2,6,6];
+            this.fourOfAKind = [6,6,1,6,6];
+            this.smallStraight = [2,3,1,5,4];
+            this.largeStraight = [6,3,2,5,4];
+            this.fullHouse = [6,1,6,1,6];
+            this.yahtzee = [6,6,6,6,6]; 
+            this.chance = [2,4,6,5,5];
+        }
+
+        const player1 = new Player();
+
+        Player.prototype.scoreCalculator = function(scoreCategory) {
+            if( typeof(scoreCategory) !== 'string' ) {
+                throw new Error(`scoreCategory is not a string`);
+            }
+
+            // Integer Tally Function
+            const integerTally = this[ scoreCategory ].reduce((tally, arrayItem) => {
+                    tally[arrayItem] = (tally[arrayItem] || 0) + 1;
+                    return tally;
+            }, {});
+            
+            switch ( scoreCategory.toString() ) {
+                // ------------> Dice Value Scores
+                case 'aces':
+                    return this.aces.reduce( (accumulator, arrayItem) => {
+                        if(arrayItem === 1) {
+                            return accumulator + arrayItem
+                        } else {
+                            return accumulator + 0
+                        }
+                    }, 0);
+                    break;
+                
+                case 'twos':
+                    return this.twos.reduce( (accumulator, arrayItem) => {
+                        if(arrayItem === 2) {
+                            return accumulator + arrayItem
+                        } else {
+                            return accumulator + 0
+                        }
+                    }, 0);
+                    break;
+                
+                case 'threes':
+                    return this.threes.reduce( (accumulator, arrayItem) => {
+                        if(arrayItem === 3) {
+                            return accumulator + arrayItem
+                        } else {
+                            return accumulator + 0
+                        }
+                    }, 0);
+                    break;
+
+                case 'fours':
+                    return this.fours.reduce( (accumulator, arrayItem) => {
+                        if(arrayItem === 4) {
+                            return accumulator + arrayItem
+                        } else {
+                            return accumulator + 0
+                        }
+                    }, 0);
+                    break;
+
+                case 'fives':
+                    return this.fives.reduce( (accumulator, arrayItem) => {
+                        if(arrayItem === 5) {
+                            return accumulator + arrayItem
+                        } else {
+                            return accumulator + 0
+                        }
+                    }, 0);
+                    break;
+
+                case 'sixes':
+                    return this.sixes.reduce( (accumulator, arrayItem) => {
+                        if(arrayItem === 6) {
+                            return accumulator + arrayItem
+                        } else {
+                            return accumulator + 0
+                        }
+                    }, 0);
+                    break;
+                
+                // ------------> Poker Scores
+
+                case 'onePair':
+                    break;
+                
+                case 'twoPair':
+                    break;
+                
+                case 'threeOfAKind':
+                    if( Object.values( integerTally ).some( arrayItem => arrayItem === 3 ) ) {
+
+                        const toakIndex = Object.values(integerTally).findIndex( arrayItem => arrayItem === 3 );
+                        return Object.values(integerTally)[ toakIndex ] * parseInt( Object.keys(integerTally)[ toakIndex ] );
+                        
+                    } else {
+                        return 0;
+                    }
+                    break;
+                
+                case 'fourOfAKind':
+                    if( Object.values( integerTally ).some( arrayItem => arrayItem === 4 ) ) {
+
+                        const toakIndex = Object.values(integerTally).findIndex( arrayItem => arrayItem === 4 );
+                        return Object.values(integerTally)[ toakIndex ] * parseInt( Object.keys(integerTally)[ toakIndex ] );
+
+                    } else {
+                        return 0;
+                    }
+                    break;
+                
+                case 'smallStraight':
+                    if( [...this.smallStraight].sort().join('') === '12345' ) {
+                        return 15;
+                    } else {
+                        return 0;
+                    }
+                    break;
+                
+                case 'largeStraight':
+                    if( [...this.largeStraight].sort().join('') === '23456' ) {
+                        return 25;
+                    } else {
+                        return 0;
+                    }
+                    break;
+                
+                case 'fullHouse':
+                    if( Object.values( integerTally ).some( arrayItem => arrayItem === 2 ) && Object.values( integerTally ).some( arrayItem => arrayItem === 3 ) ) {
+                        return this.fullHouse.reduce( (accumulator, arrayItem) => accumulator + arrayItem );
+                    } else {
+                        return 0;
+                    }
+                    break;
+                
+                case 'yahtzee':
+                    if( this.yahtzee.every((arrayItem, index, array) => arrayItem === array[0]) ) {
+                        return 50;
+                    } else {
+                        return 0;
+                    }
+                    break;
+
+                case 'chance':
+                    return this.chance.reduce( (accumulator, arrayItem) => accumulator + arrayItem );
+                    break;
+
+                // ------------> Default
+                default:
+                    break;
+            }
+        }
+
+        console.log( player1.scoreCalculator( 'threeOfAKind' ), 'Expect 18' );
+        console.log( player1.scoreCalculator( 'fourOfAKind' ), 'Expect 24'  );
+        console.log( player1.scoreCalculator( 'smallStraight' ) , 'Expect 15');
+        console.log( player1.scoreCalculator( 'largeStraight' ) , 'Expect 25');
+        console.log( player1.scoreCalculator( 'fullHouse' ) , 'Expect 20');
+        console.log( player1.scoreCalculator( 'yahtzee' ) , 'Expect 50');
+        console.log( player1.scoreCalculator( 'chance' ) , 'Expect 22');
+
+        console.log('----------------------------');
+
+/*
+        // ----> Count number of instances:
+        function instanceCounter(tally, arrayItem) {
+            tally[arrayItem] = (tally[arrayItem] || 0) + 1;
+            return tally;
+        }
+        const integerTally = player1.fullHouse.reduce((tally, arrayItem) => {
+            tally[arrayItem] = (tally[arrayItem] || 0) + 1;
+            return tally;
+        }, {});
+
+        console.log(integerTally);
+        console.log( Object.values( integerTally ).some( arrayItem => arrayItem === 2 ) );
+        console.log( Object.values( integerTally ).some( arrayItem => arrayItem === 3 ) );
+
+        if( Object.values( integerTally ).some( arrayItem => arrayItem === 2 ) && Object.values( integerTally ).some( arrayItem => arrayItem === 3 ) ) {
+            console.log('fullHouse!');
+        } else {
+            console.log('NOT a fullHouse...');
+        }
+*/
+
+        
+
+
+
+    </script>
+</body>
+</html>
