@@ -259,8 +259,12 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
     margin-top: 0;
 }
 
-.modal-inner div li {
+.modal-inner div[role="yahtzeeRules"] li {
     font-size: 0.7em;
+}
+
+.modal-inner div[role="startPlaying"] li {
+    font-size: 1.5em;
 }
 
 .modal-inner div > img {
