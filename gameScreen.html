@@ -616,8 +616,8 @@
 
             // Update totalScore + upperSum + upperBonus
             document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="upperSum"]`).textContent = playerInstanceArray[ currentPlayer ].upperScore();
-            document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="upperBonus"]`).textContent = playerInstanceArray[ currentPlayer ].upperScore() >= 63 ? 50 : 0;
-            document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="totalScore"]`).textContent = playerInstanceArray[ currentPlayer ].totalScore();
+            document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="upperBonus"]`).textContent = (playerInstanceArray[ currentPlayer ].upperScore() >= 63 ? 50 : 0);
+            document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="totalScore"]`).textContent = playerInstanceArray[ currentPlayer ].totalScore() + (playerInstanceArray[ currentPlayer ].upperScore() >= 63 ? 50 : 0);
 
             
             /* ----------------- Remove <select> options for Player that have already been used... ----------------- */
