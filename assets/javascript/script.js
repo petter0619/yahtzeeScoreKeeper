@@ -17,7 +17,7 @@ const modalOuter = document.querySelector('.modal-outer');
 
 // Modal Buttons
 const modalButtons = document.querySelectorAll('.modalButton');
-//const closeModalIcon = modalInner.querySelector('#closeModalIcon');
+const startGameButton = document.querySelector('#startGameButton');
 
 // startPlaying Modal => Add Players List
 const addPlayerList = document.querySelector('.addPlayer');
@@ -333,6 +333,11 @@ function handleAddPlayerSubmit(e) {
     e.target.reset(); 
     // Fire off custom event for items being updated
     list.dispatchEvent(new CustomEvent('playersUpdated'));
+
+    if( list.querySelectorAll('li').length === 2) {
+        startGameButton.setAttribute('style', 'display: block;');
+        startGameButton.addEventListener('click', startGame);
+    };
 }
 
 function displayPlayer() {
@@ -365,8 +370,26 @@ function toggleMobileMenu() {
 // ------------------------------ Start Game Function (aka set up #gameScreen) ------------------------------
 function startGame() {
 
+    console.log('starting game function run!');
+
+    // close the modal (can't run close modal without passing the "event")
+    modalOuter.classList.remove('open');
+    modalOuter.removeEventListener('click', closeModal);
+    closeModalIcon.addEventListener('click', closeModal);
+    window.removeEventListener('keydown', closeModal);
+
+    // Hide startScreen + display gameScreen
+    startScreen.setAttribute('style','display: none;');
+    gameScreen.setAttribute('style','display: block;');
+
+    // Grab addPlayerList of names
+    const playersToAdd = list.querySelectorAll('li');
+
     // Populate playerInstanceArray
-    playerInstanceArray = [ new Player('Player 0'), new Player('Player 1'), new Player('Player 2'), new Player('Player 3'),new Player('Player 4'), new Player('Player 5')];
+    playersToAdd.forEach( player => {
+        const playerName = player.querySelector('.playerName').textContent;
+        playerInstanceArray.push( new Player( playerName ) );
+    } );
 
     // Set initial playerTurnText
     document.querySelector('#playerTurnText').textContent = `${playerInstanceArray[ currentPlayer ].name}'s turn`;
@@ -381,10 +404,6 @@ function startGame() {
         // Add playerInstance.name to each respective players scoreColumn header
         column.querySelector('div[role="playerName"]').textContent = playerInstanceArray[ parseInt(column.dataset.playernumber) ].name;
     });
-
-    // Hide startScreen + display gameScreen
-    startScreen.setAttribute('style','display: none;');
-    gameScreen.setAttribute('style','display: block;');
 }
 
 // ------------------------------ Roll Dice Function ------------------------------
