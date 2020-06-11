@@ -253,9 +253,9 @@
     </div>
     <script>
 
-    /* -------------------------------- Roll Dice -------------------------------- */ 
-        /* Variables */ // ---> NOTE: Can't have any variables here that WON'T be here on pageLoad 
-        const diceHolders = Array.from(document.querySelectorAll('.diceHolder'));                   // Wrapper for the dice images
+        /* -------------------------------- VARIABLES -------------------------------- */ 
+
+        const diceHolders = Array.from(document.querySelectorAll('.diceHolder'));
         const diceLockButtons = document.querySelectorAll('button[role="diceLock"]');
         const rollDiceButton = document.querySelector('#rollDiceButton');
         const saveDiceForm = document.querySelector('.saveRollResult');
@@ -263,14 +263,16 @@
         const selectOptions = saveDiceForm.querySelectorAll('optgroup > option');
         let diceResultArray = [];
 
-        /* State */
+        // States
         let roundTurn = 1;
         let rollTurn = 1;
         let currentPlayer = 0;
         let playerInstanceArray = [];
 
-        /* Functions */
+        
+        /* -------------------------------- CONSTRUCTOR FUNCTION + PROTOTYPE METHODS -------------------------------- */ 
 
+        // ------------------------------ Player Constructor ------------------------------
         function Player(name) {
             this.name = name;
             this.usedScoreCategories = [];
@@ -295,6 +297,7 @@
             this.chance = null;
         }
 
+        // ------------------------------ Calculate scoreCategory score method ------------------------------
         Player.prototype.calculateScore = function(scoreCategory) {
             // Input checks
             if( typeof(scoreCategory) !== 'string' ) {
@@ -461,7 +464,7 @@
         }
 
 
-        // playerInstanceArray[0].totalScore()
+        // ------------------------------ Calculate totalScore method ------------------------------
         Player.prototype.totalScore = function() {
             const filledScores = Object.entries( this ).filter( arrayItem => {
                 if( arrayItem[0] === 'name' || arrayItem[0] === 'usedScoreCategories' ) {
@@ -478,7 +481,7 @@
             return filledScores.map( arrayItem => this.calculateScore(arrayItem[0]) ).reduce( (accumulator, arrayItem) => accumulator + arrayItem ) + (this.upperScore() >= 63 ? 50 : 0);
         }
 
-        //playerInstanceArray[0].upperScore()
+        // ------------------------------ Calculate upperScore method------------------------------
         Player.prototype.upperScore = function() {
             const filledScores = Object.entries( this ).filter( arrayItem => {
                 if( !arrayItem[0].match(/(aces|twos|threes|fours|fives|sixes)/g)  ) {
@@ -495,7 +498,9 @@
             return filledScores.map( arrayItem => this.calculateScore(arrayItem[0]) ).reduce( (accumulator, arrayItem) => accumulator + arrayItem );
         }
 
+        /* -------------------------------- FUNCTIONS -------------------------------- */
 
+        // ------------------------------ Start Game Function (aka set up #gameScreen) ------------------------------
         function startGame() {
 
             // Populate playerInstanceArray
@@ -518,6 +523,7 @@
         }
         startGame() //<---------------------------------------
 
+        // ------------------------------ Roll Dice Function ------------------------------
         function handleRollDice(event) {
             if(rollTurn === 1) {
                 diceLockButtons.forEach( button => {
@@ -554,6 +560,7 @@
             document.querySelector('#throwsLeftText').textContent = `${4 - rollTurn} roll${ (4-rollTurn === 1 ? '' : 's' ) } left`;
         }
 
+        // ------------------------------ Dice Lock Function ------------------------------
         function handleDiceLock(event) {
             // Store the 'diceslot' attribute value of the clicked button
             const diceSlot = event.currentTarget.dataset.diceslot;
@@ -571,7 +578,7 @@
             }
         }
 
-
+        // ------------------------------ Save Round Result Function ------------------------------
         function handleSaveDiceSubmit(event) {
             event.preventDefault();
             // If no valid options is chosen, send alert()
@@ -650,16 +657,9 @@
             // Fire off custom event for resetGameArea function
             saveDiceForm.dispatchEvent(new CustomEvent('diceResultSaved'));
 
-            
-
-            /* -------------------- Left to do: -------------------- */
-
-            // -------> Update scoreArea with result
-            // Add array together
-            // -------> Security check / remove options ----- Store which scoreCategory currentPlayer somehow... so it can be removed from dropdown..
-
         }
 
+        // ------------------------------ Reset Gamescreen for Next Player Function ------------------------------
         function resetGameArea() {
             // Reset dropwdown menu to "Select Option"
             document.getElementById("scoreSectionSelect").selectedIndex = 0;
@@ -707,13 +707,12 @@
         }
 
 
-        /* Event Listeners */
+        /* -------------------------------- EVENT LISTENERS -------------------------------- */
         rollDiceButton.addEventListener('click', handleRollDice);
         diceLockButtons.forEach( button => button.addEventListener('click', handleDiceLock));
         saveDiceForm.addEventListener('submit', handleSaveDiceSubmit);
         saveDiceForm.addEventListener('diceResultSaved', resetGameArea);
         
-
     </script>
 
 </body>
