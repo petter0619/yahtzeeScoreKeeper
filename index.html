@@ -3,9 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello world!</title>
+    <title>Yahtzee Score Keeper - Start Screen</title>
+    <script src="https://kit.fontawesome.com/b7e26214dd.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" type="text/css">
 </head>
 <body>
-    Hello, world!
+    <!-- Top Navigation Menu -->
+    <nav class="topnav">
+        <div id="navLogo">
+            <span>Y</span>
+            <span>A</span>
+            <span>H</span>
+            <span>T</span>
+            <span>Z</span>
+            <span>E</span>
+            <span>E</span>
+        </div>
+        <div id="navLinks">
+            <button class="navLink modalButton startPlayingButton" id="navStartGameButton" role="startPlaying">Start Playing</button>
+            <button class="navLink" id="navEndGameButton">End Game</button>
+            <button class="navLink modalButton yahtzeeRulesButton" role="yahtzeeRules">Yahtzee Rules</button>
+            <button class="navLink modalButton howSiteWorksButton" role="howSiteWorks">How This Site Works</button>
+            <a href="https://github.com/petter0619/yahtzeeScoreKeeper_repo" target="_blank" class="navLink"><i class="fab fa-github"></i></a>
+        </div>
+        <button class="icon">
+            <i class="fa fa-bars"></i>
+        </button>
+    </nav>
+    <!-- //.endTopNavigationMenu -->
+
+    <!-- Start Screen -->
+    <div id="startScreen">
+        <div id="logoWrapper">
+            <span>Y</span>
+            <span>A</span>
+            <span>H</span>
+            <span>T</span>
+            <span>Z</span>
+            <span>E</span>
+            <span>E</span>
+        </div>
+        <h1>Score <span class="blankSpace">&nbsp;</span>Keeper</h1>
+        <button class="modalButton startPlayingButton" role="startPlaying">Start Playing</button>
+        <button class="modalButton yahtzeeRulesButton" role="yahtzeeRules">Yahtzee Rules</button>
+        <button class="modalButton howSiteWorksButton" role="howSiteWorks">How This Site Works</button>
+    <div>
+    <!-- //.endStartScreen -->
+
+    <!-- Game Screen -->
+    <div id="gameScreen">
+
+    <div>
+    <!-- //.endGameScreen -->
+
+    <!-- Modals -->
+    <div class="modal-outer">
+        <div class="modal-inner">
+            <span id="closeModalIcon"><i class="far fa-window-close"></i> Close</span>
+            <div role="startPlaying">
+                <h5>Add Players</h5>
+                <p>
+                    One at a time, enter the names of each player into the box below and click the button to 
+                    add them to the game. Once all players are added click the "Start Game" button at the 
+                    bottom to begin the game.
+                </p>
+                <p>
+                    You need a minimum of 2 players, and are allowed a maximum of 6 players.
+                </p>
+                <div class="addPlayerList">
+                    <form class="addPlayer" autocomplete="off">
+                      <input type="text" name="playerName" id="item" required>
+                      <button type="submit">+ Add Player</button>
+                    </form>
+                
+                    <ul class="playersAdded"></ul>
+                </div>
+            </div>
+            <div role="yahtzeeRules">
+                <h5>Yahtzee Rules</h5>
+                <p>
+                    The game consists of a number of rounds. In each round, a player gets three rolls of the dice, 
+                    although they can choose to end their turn after one or two rolls. After the first roll the 
+                    player can save any dice they want and re-roll the other dice. This procedure is repeated after 
+                    the second roll. The player has complete choice as to which dice to roll. It is possible to 
+                    re-roll both dice that were or were not rolled before.
+                </p>
+                <p>
+                    The Yahtzee scorecard contains 13 different category boxes and in each round, after the third roll, 
+                    the player must choose one of these categories. The score entered in the box depends on how well 
+                    the five dice match the scoring rule for the category. Details of the scoring rules for each category 
+                    are given below.
+                </p>
+                <p>
+                    The Yahtzee scorecard contains 13 scoring boxes divided into 2 parts.
+                </p>
+                <h6>Part 1</h6>
+                <p>
+                    In the first part there are six scores. Each of these scores is determined by adding the total 
+                    number of dice matching the selected category. The categories correspond to each respective dice face.
+                    As an example, if three of your five dice rolled a 3, and you choose to add this result to the part 1 
+                    category "Threes" you will get a score of
+                    9 ( = 3 * 3).
+                </p>
+                <img src="./assets/media/images/yahtzeeRulesTablePart1.png" alt="">
+                <p>
+                    If a player scores a total of 63 or more points in these six categories from part 1, a bonus of 
+                    35 is added to the upper section score. Although 63 points corresponds to scoring exactly 
+                    three-of-a-kind for each of the six boxes, a common way to get the bonus is by scoring 
+                    four-of-a-kind for some numbers so that fewer of other numbers are needed. 
+                </p>
+                <h6>Part 2</h6>
+                <p>
+                    The second part contains a number of poker-themed categories with specific point values. 
+                    As an example, one of the categories is called Three of a Kind. The scoring rule for this category 
+                    means that a player only scores if at least three of the five dice are the same value. The game is 
+                    completed after 13 rounds by each player, with each of the 13 boxes filled. The total score is 
+                    calculated by summing all thirteen boxes, together with any bonuses.
+                </p>
+                <img src="./assets/media/images/yahtzeeRulesTablePart2.png" alt="">
+                <p>
+                    The Chance category is often used for a turn that will not score well in any other category.
+                </p>
+                <p>In this version we have also added two other categories to this section:</p>
+                <ul>
+                    <li>One pair: At least 2 dice the same. Score is the sum of the highest matching pair.</li>
+                    <li>Two pair: 2 pairs of 2 matching dice. Score is the sum of the two pairs.</li>
+                </ul>
+            </div>
+            <div role="howSiteWorks">
+                <h5>How This Site Works</h5>
+            </div>
+        </div>
+      </div>
+    <!-- //.modals -->
+
+    <!-- Javascript -->
+    <script src="./assets/javascript/startScreen.js" type="text/javascript"></script>
 </body>
 </html>
