@@ -210,7 +210,6 @@ Player.prototype.calculateScore = function(scoreCategory) {
     }
 }
 
-
 // ------------------------------ Calculate totalScore method ------------------------------
 Player.prototype.totalScore = function() {
     const filledScores = Object.entries( this ).filter( arrayItem => {
@@ -473,7 +472,7 @@ function resetGameArea() {
 // ----------------> Top Navigation
 mobileMenuIcon.addEventListener('click', toggleMobileMenu);
 
-// GameScreen event listeners
+// ----------------> GameScreen event listeners
 rollDiceButton.addEventListener('click', handleRollDice);
 diceLockButtons.forEach( button => button.addEventListener('click', handleDiceLock));
 saveDiceForm.addEventListener('submit', handleSaveDiceSubmit);
