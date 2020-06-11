@@ -369,9 +369,6 @@ function toggleMobileMenu() {
 
 // ------------------------------ Start Game Function (aka set up #gameScreen) ------------------------------
 function startGame() {
-
-    console.log('starting game function run!');
-
     // close the modal (can't run close modal without passing the "event")
     modalOuter.classList.remove('open');
     modalOuter.removeEventListener('click', closeModal);
@@ -404,6 +401,19 @@ function startGame() {
         // Add playerInstance.name to each respective players scoreColumn header
         column.querySelector('div[role="playerName"]').textContent = playerInstanceArray[ parseInt(column.dataset.playernumber) ].name;
     });
+
+    // Replace "startPlaying" with "endGame" in topNav
+    document.querySelector('.topnav #navEndGameButton').setAttribute('style', 'display: inline-block;');
+    document.querySelector('.topnav #navStartGameButton').setAttribute('style', 'display: none;');
+
+    document.querySelector('.topnav #navEndGameButton').addEventListener('click', () => {
+        if ( confirm("Are you sure you want to end the game? You will lose all your progress if you do.") ) {
+            document.location.reload(true);
+        } else {
+            return;
+        }
+    });
+    
 }
 
 // ------------------------------ Roll Dice Function ------------------------------
