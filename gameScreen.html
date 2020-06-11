@@ -600,6 +600,11 @@
                 // Send results into diceResultArray (could also use .splice() along w. the 'index' param...)
                 diceResultArray.push(diceValue);
             });
+            // Check chosenCategory is actually empty
+            if(!playerInstanceArray[ currentPlayer ][ chosenCategory ] === null) {
+                alert('This scoreCategory has already been filled. Please choose another!');
+                return;
+            }
             // Set chosenCategory (aka playerInstance property) to diceResultArray
             playerInstanceArray[ currentPlayer ][ chosenCategory ] = diceResultArray;
 
@@ -615,9 +620,13 @@
             divToUpdate.textContent = score;
 
             // Update totalScore + upperSum + upperBonus
-            document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="upperSum"]`).textContent = playerInstanceArray[ currentPlayer ].upperScore(); // upperScore
-            document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="upperBonus"]`).textContent = (playerInstanceArray[ currentPlayer ].upperScore() >= 63 ? 50 : 0); // upperBonus
-            document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="totalScore"]`).textContent = playerInstanceArray[ currentPlayer ].totalScore(); // totalScore
+            const upperScoreCell = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="upperSum"]`);
+            const upperBonusCell = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="upperBonus"]`);
+            const totalScoreCell = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="totalScore"]`);
+
+            upperScoreCell.textContent = playerInstanceArray[ currentPlayer ].upperScore(); // upperScore
+            upperBonusCell.textContent = (playerInstanceArray[ currentPlayer ].upperScore() >= 63 ? 50 : 0); // upperBonus
+            totalScoreCell.textContent = playerInstanceArray[ currentPlayer ].totalScore(); // totalScore
 
             
             /* ----------------- Remove <select> options for Player that have already been used... ----------------- */
