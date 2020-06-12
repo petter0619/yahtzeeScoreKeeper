@@ -333,7 +333,7 @@ function handleAddPlayerSubmit(e) {
     e.target.reset(); 
     // Fire off custom event for items being updated
     list.dispatchEvent(new CustomEvent('playersUpdated'));
-
+    // Show startGame button after at least 2 players have been added
     if( list.querySelectorAll('li').length === 2) {
         startGameButton.setAttribute('style', 'display: block;');
         startGameButton.addEventListener('click', startGame);
@@ -354,6 +354,11 @@ function deletePlayer(id) {
     // Update items array without item with argument ID
     playersList = playersList.filter(player => player.id !== id);
     list.dispatchEvent(new CustomEvent('playersUpdated'));
+    // Remove startGame button if there are less than 2 players
+    if( list.querySelectorAll('li').length < 2) {
+        startGameButton.setAttribute('style', 'display: none;');
+        startGameButton.removeEventListener('click', startGame);
+    };
 }
 
 // ----------------> Top Navigation Functions
