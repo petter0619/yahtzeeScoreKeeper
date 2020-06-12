@@ -431,11 +431,22 @@ function handleRollDice(event) {
         document.querySelector('#saveRollResultButton').removeAttribute('disabled');
     }
     // Temporarily disable rollDice button to prevent accidental double rolls through accidental double clicks + disable rollDice button after rollTurn 3
+    /*
+    rollDiceButton.setAttribute('disabled', 'true');
+    if(rollTurn < 3) {
+        setTimeout(function() {
+            rollDiceButton.removeAttribute('disabled');
+        }, 1500);
+    }
+    */
     rollDiceButton.removeEventListener('click', handleRollDice);
     if(rollTurn < 3) {
         setTimeout(function() {
             rollDiceButton.addEventListener('click', handleRollDice);
         }, 1500);
+    } else {
+        rollDiceButton.addEventListener('click', handleRollDice);
+        rollDiceButton.setAttribute('disabled', 'true');
     }
     // Increment rollTurn state
     rollTurn += 1;
