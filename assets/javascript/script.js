@@ -522,15 +522,9 @@ function handleSaveDiceSubmit(event) {
     playerInstanceArray[ currentPlayer ][ chosenCategory ] = diceResultArray;
 
     /* ----------------- Update Score Area ----------------- */
-
-    // Identify DIV to place score in:
-    const divToUpdate = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="${chosenCategory}"]`);
-    
-    // Calculate score
-    const score = playerInstanceArray[ currentPlayer ].calculateScore( chosenCategory );
-
-    // Place score in correct DIV
-    divToUpdate.textContent = score;
+    const divToUpdate = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="${chosenCategory}"]`); // Identify DIV to place score in
+    const score = playerInstanceArray[ currentPlayer ].calculateScore( chosenCategory ); // Calculate score
+    divToUpdate.textContent = score; // Place score in correct DIV
 
     // Update totalScore + upperSum + upperBonus
     const upperScoreCell = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="upperSum"]`);
@@ -541,19 +535,15 @@ function handleSaveDiceSubmit(event) {
     upperBonusCell.textContent = (playerInstanceArray[ currentPlayer ].upperScore() >= 63 ? 50 : 0); // upperBonus
     totalScoreCell.textContent = playerInstanceArray[ currentPlayer ].totalScore(); // totalScore
 
+    /* ----------------- Prep removal/disabling of already used categories ----------------- */ 
+    playerInstanceArray[ currentPlayer ].usedScoreCategories.push( chosenCategory ); // Push chosenCategory (aka the used category) into playerInstance.usedScoreCategories array
     
-    /* ----------------- Remove <select> options for Player that have already been used... ----------------- */
-    
-    // Push chosenCategory (aka the used category) into playerInstance.usedScoreCategories array
-    playerInstanceArray[ currentPlayer ].usedScoreCategories.push( chosenCategory );
-    
-
     /* ----------------- CurrentPlayer ----------------- */
 
-     // Increment CurrentPlayer state
+    // IF currentPlayer is last Player in playerInstanceArray reset currentPlayer to 0
      if(currentPlayer === playerInstanceArray.length - 1) {
         currentPlayer = 0;
-        // Update roundCounter header (needs to be done right as currentPlayer is updated...)
+        // Update roundCounter header (needs to be done along with currentPlayer update...)
         console.log('Before roundTurn++',roundTurn);
         roundTurn += 1;
         document.querySelector('#roundCounter').textContent = `Round ${roundTurn} of 15`;
@@ -563,6 +553,7 @@ function handleSaveDiceSubmit(event) {
             console.log('Game over!');
         }
     } else {
+        // Increment CurrentPlayer state
         currentPlayer += 1;
     }
 
@@ -618,6 +609,37 @@ function resetGameArea() {
 
 }
 
+function handleGameEnd() {
+    console.log('Game End Function running!');
+    document.querySelector('#roundCounter').textContent = `Game over!`;
+
+    // Open Modal
+    document.querySelector('#gameEndModal').classList.add('open');
+    
+
+    const gameResults = document.querySelector('#gameResults');
+    const winner = playerInstanceArray.reduce(function(prev, current) {
+        return ( prev.totalScore() > current.totalScore() ) ? prev : current
+    });
+    console.log(winner);
+
+    const resultList = playerInstanceArray.map( player => { 
+        return `<li> 
+            ${player.name} scored: ${player.totalScore()} points
+        </li>`;
+    }).join('');
+    gameResults.innerHTML = `
+        <h4 style="color: black;">Congratulations ${winner.name}!</h4>
+        <p>You won the game with a score of ${winner.totalScore()}.</p>
+        <p>The full results of the game are:</p>
+        <ul>${resultList}</ul>
+        <p>Play again?</p>
+        <button>Yes</button>
+        <button>No</button>
+    `;
+
+}
+
 
 /* --------------------------------------------------------------------------------------------------------- */
 /* -------------------------------------------- Event Listeners -------------------------------------------- */
@@ -647,3 +669,4 @@ rollDiceButton.addEventListener('click', handleRollDice);
 diceLockButtons.forEach( button => button.addEventListener('click', handleDiceLock));
 saveDiceForm.addEventListener('submit', handleSaveDiceSubmit);
 saveDiceForm.addEventListener('diceResultSaved', resetGameArea);
+gameScreen.addEventListener('gameEnd', handleGameEnd)
