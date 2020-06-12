@@ -431,10 +431,10 @@ function handleRollDice(event) {
         document.querySelector('#saveRollResultButton').removeAttribute('disabled');
     }
     // Temporarily disable rollDice button to prevent accidental double rolls through accidental double clicks + disable rollDice button after rollTurn 3
-    rollDiceButton.setAttribute('disabled', 'true');
+    rollDiceButton.removeEventListener('click', handleRollDice);
     if(rollTurn < 3) {
         setTimeout(function() {
-            rollDiceButton.removeAttribute('disabled');
+            rollDiceButton.addEventListener('click', handleRollDice);
         }, 1500);
     }
     // Increment rollTurn state
