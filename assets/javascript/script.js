@@ -431,14 +431,6 @@ function handleRollDice(event) {
         document.querySelector('#saveRollResultButton').removeAttribute('disabled');
     }
     // Temporarily disable rollDice button to prevent accidental double rolls through accidental double clicks + disable rollDice button after rollTurn 3
-    /*
-    rollDiceButton.setAttribute('disabled', 'true');
-    if(rollTurn < 3) {
-        setTimeout(function() {
-            rollDiceButton.removeAttribute('disabled');
-        }, 1500);
-    }
-    */
     rollDiceButton.removeEventListener('click', handleRollDice);
     if(rollTurn < 3) {
         setTimeout(function() {
@@ -562,8 +554,14 @@ function handleSaveDiceSubmit(event) {
      if(currentPlayer === playerInstanceArray.length - 1) {
         currentPlayer = 0;
         // Update roundCounter header (needs to be done right as currentPlayer is updated...)
+        console.log('Before roundTurn++',roundTurn);
         roundTurn += 1;
         document.querySelector('#roundCounter').textContent = `Round ${roundTurn} of 15`;
+        console.log('Post roundturn++',roundTurn);
+        if(roundTurn === 16) {
+            gameScreen.dispatchEvent(new CustomEvent('gameEnd'));
+            console.log('Game over!');
+        }
     } else {
         currentPlayer += 1;
     }
