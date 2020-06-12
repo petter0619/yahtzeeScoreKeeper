@@ -5,39 +5,39 @@ console.log('script.js found!');
 /* --------------------------------------------------------------------------- */ 
 
 // Top Navigation
-const mobileMenuIcon = document.querySelector('.topnav button.icon');
+var mobileMenuIcon = document.querySelector('.topnav button.icon');
 
 // startScreen + gameScreen
-const startScreen = document.querySelector('#startScreen');
-const gameScreen = document.querySelector('#gameScreen');
+var startScreen = document.querySelector('#startScreen');
+var gameScreen = document.querySelector('#gameScreen');
 
 // Modal
-const modalInner = document.querySelector('.modal-inner');
-const modalOuter = document.querySelector('.modal-outer');
+var modalInner = document.querySelector('.modal-inner');
+var modalOuter = document.querySelector('.modal-outer');
 
 // Modal Buttons
-const modalButtons = document.querySelectorAll('.modalButton');
-const startGameButton = document.querySelector('#startGameButton');
+var modalButtons = document.querySelectorAll('.modalButton');
+var startGameButton = document.querySelector('#startGameButton');
 
 // startPlaying Modal => Add Players List
-const addPlayerList = document.querySelector('.addPlayer');
-const list = document.querySelector('.playersAdded');
-let playersList = []; // Create empty array to hold our 'state'
+var addPlayerList = document.querySelector('.addPlayer');
+var list = document.querySelector('.playersAdded');
+var playersList = []; // Create empty array to hold our 'state'
 
 // GameScreen Variables
-const diceHolders = Array.from(document.querySelectorAll('.diceHolder'));
-const diceLockButtons = document.querySelectorAll('button[role="diceLock"]');
-const rollDiceButton = document.querySelector('#rollDiceButton');
-const saveDiceForm = document.querySelector('.saveRollResult');
-const playerScoreColums = Array.from(document.querySelectorAll('[data-playerNumber]'));
-const selectOptions = saveDiceForm.querySelectorAll('optgroup > option');
-let diceResultArray = [];
+var diceHolders = Array.from(document.querySelectorAll('.diceHolder'));
+var diceLockButtons = document.querySelectorAll('button[role="diceLock"]');
+var rollDiceButton = document.querySelector('#rollDiceButton');
+var saveDiceForm = document.querySelector('.saveRollResult');
+var playerScoreColums = Array.from(document.querySelectorAll('[data-playerNumber]'));
+var selectOptions = saveDiceForm.querySelectorAll('optgroup > option');
+var diceResultArray = [];
 
 // GameScreen States
-let roundTurn = 1;
-let rollTurn = 1;
-let currentPlayer = 0;
-let playerInstanceArray = [];
+var roundTurn = 1;
+var rollTurn = 1;
+var currentPlayer = 0;
+var playerInstanceArray = [];
 
 /* ---------------------------------------------------------------------------------------------------------- */ 
 /* -------------------------------- CONSTRUCTOR FUNCTION + PROTOTYPE METHODS -------------------------------- */ 
