@@ -423,14 +423,19 @@ function startGame() {
 
 // ------------------------------ Roll Dice Function ------------------------------
 function handleRollDice(event) {
+    // Disable / enable diceLock + saveResult buttons depending on rollTurn
     if(rollTurn === 1) {
         diceLockButtons.forEach( button => {
             button.removeAttribute('disabled');
         });
         document.querySelector('#saveRollResultButton').removeAttribute('disabled');
     }
-    if(rollTurn === 3) {
-        rollDiceButton.setAttribute('disabled', 'true');
+    // Temporarily disable rollDice button to prevent accidental double rolls through accidental double clicks + disable rollDice button after rollTurn 3
+    rollDiceButton.setAttribute('disabled', 'true');
+    if(rollTurn < 3) {
+        setTimeout(function() {
+            rollDiceButton.removeAttribute('disabled');
+        }, 1500);
     }
     // Increment rollTurn state
     rollTurn += 1;
