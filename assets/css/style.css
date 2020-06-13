@@ -724,6 +724,23 @@ div[data-currentPlayer="true"] > div.scoreHolder {
 
 }/* <--------- Media Query End */
 
+@media screen and (max-width: 570px) {
+    /* startPlaying => addPlayers modal content */
+    .addPlayerList {
+        max-width: 80vw;
+    }
+
+    .addPlayer {
+        grid-template-columns: auto;
+        grid-template-rows: repeat(2, auto);
+    }
+
+    .addPlayer > button {
+        font-size: 1rem;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+}/* <--------- Media Query End */
 
 @media screen and (max-width: 500px) {
 
@@ -756,22 +773,6 @@ div[data-currentPlayer="true"] > div.scoreHolder {
         font-size: 1.2rem;
     }
 
-    /* startPlaying => addPlayers modal content */
-    .addPlayerList {
-        max-width: 80vw;
-    }
-
-    .addPlayer {
-        grid-template-columns: auto;
-        grid-template-rows: repeat(2, auto);
-    }
-
-    .addPlayer > button {
-        font-size: 1rem;
-        margin-left: 0;
-        margin-top: 5px;
-    }
-
     /* Game Screen Header */
 
     #roundCounter {
@@ -795,11 +796,15 @@ div[data-currentPlayer="true"] > div.scoreHolder {
     /* Game Button Area */
 
     #gameButtonArea {
-        flex-wrap: wrap;
+        display: grid;
     }
 
     #rollDiceSection {
         margin: 30px 0;
+    }
+
+    #rollDiceSection > button {
+        width: 100%;
     }
 
     /* Score Area */
