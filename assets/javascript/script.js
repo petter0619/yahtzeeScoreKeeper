@@ -548,9 +548,10 @@ function handleSaveDiceSubmit(event) {
         roundTurn += 1;
         document.querySelector('#roundCounter').textContent = `Round ${roundTurn} of 15`;
         console.log('Post roundturn++',roundTurn);
-        if(roundTurn === 16) {
+        if(roundTurn === 2) {
             gameScreen.dispatchEvent(new CustomEvent('gameEnd'));
             console.log('Game over!');
+            return;
         }
     } else {
         // Increment CurrentPlayer state
@@ -610,34 +611,23 @@ function resetGameArea() {
 }
 
 function handleGameEnd() {
-    console.log('Game End Function running!');
-    document.querySelector('#roundCounter').textContent = `Game over!`;
-
-    // Open Modal
-    document.querySelector('#gameEndModal').classList.add('open');
-    
-
-    const gameResults = document.querySelector('#gameResults');
+    // Identify game winner
     const winner = playerInstanceArray.reduce(function(prev, current) {
         return ( prev.totalScore() > current.totalScore() ) ? prev : current
     });
-    console.log(winner);
 
-    const resultList = playerInstanceArray.map( player => { 
-        return `<li> 
-            ${player.name} scored: ${player.totalScore()} points
-        </li>`;
-    }).join('');
-    gameResults.innerHTML = `
-        <h4 style="color: black;">Congratulations ${winner.name}!</h4>
-        <p>You won the game with a score of ${winner.totalScore()}.</p>
-        <p>The full results of the game are:</p>
-        <ul>${resultList}</ul>
-        <p>Play again?</p>
-        <button>Yes</button>
-        <button>No</button>
-    `;
+    // Update roundCounter text
+    document.querySelector('#roundCounter').textContent = `Game over. ${winner.name} wins!`;
 
+    // Disable rollDice + saveDiceResult buttons
+    rollDiceButton.setAttribute('disabled', 'true');
+    document.querySelector('#saveRollResultButton').setAttribute('disabled', 'true');
+
+    // Override currentPlayer CSS styling
+    document.querySelectorAll('.playerCol').forEach( playerCol => {
+        console.log(playerCol);
+        playerCol.removeAttribute('data-currentplayer');
+    });
 }
 
 
