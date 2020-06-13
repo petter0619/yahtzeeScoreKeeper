@@ -278,7 +278,6 @@ function toggleMobileMenu() {
     }
 }
 
-
 // ----------------> Modal Functions
 // Open modal
 function openModal(event) {
@@ -296,6 +295,13 @@ function openModal(event) {
     modalOuter.addEventListener('click', closeModal);
     closeModalIcon.addEventListener('click', closeModal);
     window.addEventListener('keydown', closeModal);
+
+    // Add Event Listeners for the addPlayerList
+    if(buttonRole === 'startPlaying') {
+        addPlayerList.addEventListener('submit', handleAddPlayerSubmit);
+        list.addEventListener('playersUpdated', displayPlayer); 
+        list.addEventListener('click', deletePlayer);
+    }
 }
 
 // Close modal
@@ -303,8 +309,12 @@ function closeModal(event) {
     if(event.key === 'Escape' || event.target.className.includes('modal-outer') || event.currentTarget === closeModalIcon) {
         modalOuter.classList.remove('open');
         modalOuter.removeEventListener('click', closeModal);
-        closeModalIcon.addEventListener('click', closeModal);
+        closeModalIcon.removeEventListener('click', closeModal);
         window.removeEventListener('keydown', closeModal);
+        // Remove Event Listeners for the addPlayerList
+        addPlayerList.removeEventListener('submit', handleAddPlayerSubmit);
+        list.removeEventListener('playersUpdated', displayPlayer); 
+        list.removeEventListener('click', deletePlayer);
     }
 }
 
@@ -350,7 +360,9 @@ function displayPlayer() {
     list.innerHTML = html;
 }
 
-function deletePlayer(id) {
+function deletePlayer(event) {
+    // Get the argument ID
+    const id = parseInt(event.target.value);
     // Update items array without item with argument ID
     playersList = playersList.filter(player => player.id !== id);
     list.dispatchEvent(new CustomEvent('playersUpdated'));
@@ -377,7 +389,7 @@ function startGame() {
     // close the modal (can't run close modal without passing the "event")
     modalOuter.classList.remove('open');
     modalOuter.removeEventListener('click', closeModal);
-    closeModalIcon.addEventListener('click', closeModal);
+    closeModalIcon.removeEventListener('click', closeModal);
     window.removeEventListener('keydown', closeModal);
 
     // Hide startScreen + display gameScreen
@@ -639,19 +651,6 @@ mobileMenuIcon.addEventListener('click', toggleMobileMenu);
 
 // ---------------- Open Modals ----------------
 modalButtons.forEach(button => button.addEventListener('click', openModal))
-
-
-// ---------------- startPlaying Modal => Add Players List -------------------------- !!! Move into Open Modal function????
-addPlayerList.addEventListener('submit', handleAddPlayerSubmit);
-list.addEventListener('playersUpdated', displayPlayer); 
-// Event delegation: listen for the click on the <ul> but delegate the event to the button (IF statement); if that is what was clicked
-list.addEventListener('click', function (e) { 
-    const id = parseInt(e.target.value);
-    // Listening for event on the list, but don't to anything unless click was on a button (in the list)
-    if(e.target.matches('button')) {
-        deletePlayer(id); // ID is placed on button via interpelation
-    }
-});
 
 // ----------------> GameScreen event listeners
 rollDiceButton.addEventListener('click', handleRollDice);
