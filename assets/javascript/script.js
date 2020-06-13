@@ -548,9 +548,8 @@ function handleSaveDiceSubmit(event) {
         roundTurn += 1;
         document.querySelector('#roundCounter').textContent = `Round ${roundTurn} of 15`;
         console.log('Post roundturn++',roundTurn);
-        if(roundTurn === 2) {
+        if(roundTurn === 16) {
             gameScreen.dispatchEvent(new CustomEvent('gameEnd'));
-            console.log('Game over!');
             return;
         }
     } else {
