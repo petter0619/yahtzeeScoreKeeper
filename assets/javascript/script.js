@@ -14,15 +14,13 @@ var gameScreen = document.querySelector('#gameScreen');
 // Modal
 var modalInner = document.querySelector('.modal-inner');
 var modalOuter = document.querySelector('.modal-outer');
-
-// Modal Buttons
 var modalButtons = document.querySelectorAll('.modalButton');
-var startGameButton = document.querySelector('#startGameButton');
 
 // startPlaying Modal => Add Players List
 var addPlayerList = document.querySelector('.addPlayer');
 var list = document.querySelector('.playersAdded');
 var playersList = []; // Create empty array to hold our 'state'
+var startGameButton = document.querySelector('#startGameButton');
 
 // GameScreen Variables
 var diceHolders = Array.from(document.querySelectorAll('.diceHolder'));
@@ -565,7 +563,7 @@ function handleSaveDiceSubmit(event) {
         // Update roundCounter header (needs to be done along with currentPlayer update...)
         roundTurn += 1;
         document.querySelector('#roundCounter').textContent = `Round ${roundTurn} of 15`;
-        if(roundTurn === 16) {
+        if(roundTurn === 2) {
             gameScreen.dispatchEvent(new CustomEvent('gameEnd'));
             return;
         }
