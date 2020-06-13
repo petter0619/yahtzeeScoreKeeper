@@ -271,17 +271,16 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
     max-width: 100%;
 }
 
+.modal-inner > div[role=yahtzeeRules], .modal-inner > div[role=howSiteWorks] {
+    max-width: 600px;
+}
+
 /* -------------------------- //.modals -------------------------- */
 
 /* -------------------------- startPlaying => addPlayers modal content -------------------------- */
 
 .modal-inner > div[role=startPlaying] {
     max-width: 550px;
-}
-
-
-.modal-inner > div[role=yahtzeeRules] {
-    max-width: 600px;
 }
 
 .addPlayer {
@@ -664,8 +663,8 @@ div[data-currentPlayer="true"] > div.scoreHolder {
         padding: 1.5rem 0.6rem;
     }
 
-    .modal-inner > div[role=startPlaying], .modal-inner > div[role=yahtzeeRules] {
-        max-width: 90vw; /* 280px */
+    .modal-inner > div[role=startPlaying], .modal-inner > div[role=yahtzeeRules], .modal-inner > div[role=howSiteWorks]{
+        max-width: 90vw;
     }
     
     .modal-inner div > p, .modal-inner div > li {
