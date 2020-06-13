@@ -279,6 +279,9 @@ function toggleMobileMenu() {
 // ----------------> Modal Functions
 // Open modal
 function openModal(event) {
+    // Close mobileMenu after opening a modal (otherwise it remains open)
+    toggleMobileMenu();
+
     // Show the modal
     modalOuter.classList.add('open');
 
@@ -563,7 +566,7 @@ function handleSaveDiceSubmit(event) {
         // Update roundCounter header (needs to be done along with currentPlayer update...)
         roundTurn += 1;
         document.querySelector('#roundCounter').textContent = `Round ${roundTurn} of 15`;
-        if(roundTurn === 2) {
+        if(roundTurn === 16) {
             gameScreen.dispatchEvent(new CustomEvent('gameEnd'));
             return;
         }

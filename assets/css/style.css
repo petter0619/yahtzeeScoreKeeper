@@ -800,7 +800,7 @@ div[data-currentPlayer="true"] > div.scoreHolder {
     }
 
     #rollDiceSection {
-        margin: 30px 0;
+        margin: 10px 0 30px 0;
     }
 
     #rollDiceSection > button {
