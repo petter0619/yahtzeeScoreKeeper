@@ -392,6 +392,13 @@ function startGame() {
     closeModalIcon.removeEventListener('click', closeModal);
     window.removeEventListener('keydown', closeModal);
 
+    // Add gameScreen event listeners
+    rollDiceButton.addEventListener('click', handleRollDice);
+    diceLockButtons.forEach( button => button.addEventListener('click', handleDiceLock));
+    saveDiceForm.addEventListener('submit', handleSaveDiceSubmit);
+    saveDiceForm.addEventListener('diceResultSaved', resetGameArea);
+    gameScreen.addEventListener('gameEnd', handleGameEnd)
+
     // Hide startScreen + display gameScreen
     startScreen.setAttribute('style','display: none;');
     gameScreen.setAttribute('style','display: block;');
@@ -556,10 +563,8 @@ function handleSaveDiceSubmit(event) {
      if(currentPlayer === playerInstanceArray.length - 1) {
         currentPlayer = 0;
         // Update roundCounter header (needs to be done along with currentPlayer update...)
-        console.log('Before roundTurn++',roundTurn);
         roundTurn += 1;
         document.querySelector('#roundCounter').textContent = `Round ${roundTurn} of 15`;
-        console.log('Post roundturn++',roundTurn);
         if(roundTurn === 16) {
             gameScreen.dispatchEvent(new CustomEvent('gameEnd'));
             return;
@@ -571,7 +576,6 @@ function handleSaveDiceSubmit(event) {
 
     // Fire off custom event for resetGameArea function
     saveDiceForm.dispatchEvent(new CustomEvent('diceResultSaved'));
-
 }
 
 // ------------------------------ Reset Gamescreen for Next Player Function ------------------------------
@@ -652,9 +656,3 @@ mobileMenuIcon.addEventListener('click', toggleMobileMenu);
 // ---------------- Open Modals ----------------
 modalButtons.forEach(button => button.addEventListener('click', openModal))
 
-// ----------------> GameScreen event listeners
-rollDiceButton.addEventListener('click', handleRollDice);
-diceLockButtons.forEach( button => button.addEventListener('click', handleDiceLock));
-saveDiceForm.addEventListener('submit', handleSaveDiceSubmit);
-saveDiceForm.addEventListener('diceResultSaved', resetGameArea);
-gameScreen.addEventListener('gameEnd', handleGameEnd)
