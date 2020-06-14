@@ -268,20 +268,20 @@ Player.prototype.upperScore = function() {
 // ----------------> Top Navigation Functions
 /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
 function toggleMobileMenu() {
-    const navLinks = document.getElementById('navLinks');
-    if (navLinks.style.display === 'block') {
-        navLinks.style.display = 'none';
-    } else {
-        navLinks.style.display = 'block';
+    if(window.innerWidth < 993) {
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks.style.display === 'block') {
+            navLinks.style.display = 'none';
+        } else {
+            navLinks.style.display = 'block';
+        }
     }
+    return;
 }
 
 // ----------------> Modal Functions
 // Open modal
 function openModal(event) {
-    // Close mobileMenu after opening a modal (otherwise it remains open)
-    toggleMobileMenu();
-
     // Show the modal
     modalOuter.classList.add('open');
 
@@ -302,6 +302,11 @@ function openModal(event) {
         addPlayerList.addEventListener('submit', handleAddPlayerSubmit);
         list.addEventListener('playersUpdated', displayPlayer); 
         list.addEventListener('click', deletePlayer);
+    }
+
+    // Close mobileMenu (otherwise it remains open) if screen width = 992px or below
+    if(window.innerWidth < 993 && Array.from(event.currentTarget.classList).join('').includes('navLink')) {
+        toggleMobileMenu();
     }
 }
 
