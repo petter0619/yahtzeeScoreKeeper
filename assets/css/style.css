@@ -2,14 +2,6 @@
 /* -------------------------- Base Styles & Variables -------------------------- */
 
 html {
-    --grey: #e7e7e7;
-    --gray: var(--grey);
-    --blue: #0072B9;
-    --pink: #D60087;
-    --yellow: #ffc600;
-    --black: #2e2e2e;
-    --red: #c73737;
-    --green: #61e846;
     margin: 0;
     padding: 0;
 }
@@ -19,14 +11,14 @@ body {
     padding: 0;
     font-size: 2rem;
     line-height: 1.5;
-    background-color: var(--blue);
+    background-color: #0072B9;
     background-image: url("data:image/svg+xml,%3Csvg width='20' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 21.184c.13.357.264.72.402 1.088l.661 1.768C4.653 33.64 6 39.647 6 50c0 10.271-1.222 15.362-4.928 24.629-.383.955-.74 1.869-1.072 2.75v6.225c.73-2.51 1.691-5.139 2.928-8.233C6.722 65.888 8 60.562 8 50c0-10.626-1.397-16.855-5.063-26.66l-.662-1.767C1.352 19.098.601 16.913 0 14.85v6.335zm20 0C17.108 13.258 16 8.077 16 0h2c0 5.744.574 9.951 2 14.85v6.334zm0 56.195c-2.966 7.86-4 13.123-4 22.621h2c0-6.842.542-11.386 2-16.396v-6.225zM6 0c0 8.44 1.21 13.718 4.402 22.272l.661 1.768C14.653 33.64 16 39.647 16 50c0 10.271-1.222 15.362-4.928 24.629C7.278 84.112 6 89.438 6 100h2c0-10.271 1.222-15.362 4.928-24.629C16.722 65.888 18 60.562 18 50c0-10.626-1.397-16.855-5.063-26.66l-.662-1.767C9.16 13.223 8 8.163 8 0H6z' fill='%23fff' fill-rule='nonzero' fill-opacity='.1' opacity='.349'/%3E%3C/svg%3E%0A");
     background-size: 15px;
 }
 
 a.button, button, input[type="button"] {
     color: white;
-    background: var(--pink);
+    background: #D60087;
     padding: 1rem;
     border: 0;
     border: 2px solid transparent;
@@ -37,25 +29,24 @@ a.button, button, input[type="button"] {
 }
 
 a.button:hover, button:hover, input[type="button"]:hover {
-    background-color: var(--yellow);
-    color: var(--pink);
+    background-color: #ffc600;
+    color: #D60087;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: white;
   margin: 0;
   line-height: 1;
-  text-shadow: var(--text-shadow);
 }
 
 a.button[disabled="true"], button[disabled="true"], input[type="button"][disabled="true"] {
     background-color: #b3b0b0;
-    color: var(--grey);
+    color: #e7e7e7;
 }
 
 a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="button"][disabled="true"]:hover {
     background-color: #b3b0b0;
-    color: var(--grey);
+    color: #e7e7e7;
 }
 
 /* -------------------------- Top Navigation -------------------------- */
@@ -74,7 +65,7 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
 }
 
 .topnav #navLogo > span {
-    background-color: var(--pink);
+    background-color: #D60087;
     color: white;
     border-radius: 10px;
     display: block;
@@ -146,8 +137,8 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
 }
 
 #logoWrapper > span {
-    background-color: var(--yellow);
-    color: var(--red);
+    background-color: #ffc600;
+    color: #c73737;
     border-radius: 10px;
     width: 125px;
     height: 125px;
@@ -175,7 +166,7 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
 
 #startScreen .startPlayingButton:hover {
     border: 3px solid green;
-    background: var(--yellow);
+    background: #ffc600;
     color: green;
 }
 
@@ -319,7 +310,7 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
     grid-template-columns: 1fr auto;
     grid-gap: 1rem;
     align-items: center;
-    border-bottom: 1px solid var(--gray);
+    border-bottom: 1px solid #e7e7e7;
     font-size: 20px;
 }
   
@@ -348,7 +339,7 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
 }
 
 #startGameButton:hover {
-    color: var(--yellow);
+    color: #ffc600;
 }
 
 /* -------------------------- Game Screen -------------------------- */
@@ -383,7 +374,7 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
 }
 
 .diceHolder {
-    background-color: var(--yellow);
+    background-color: #ffc600;
     color: black;
     border-radius: 10px;
     width: 125px;
@@ -403,7 +394,7 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
 }
 
 .diceHolder[data-locked="true"] {
-    border: 5px solid var(--green);
+    border: 5px solid #61e846;
 }
 
 .diceBlock > button[data-roleClass="diceLock"] {
@@ -413,16 +404,14 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
 }
 
 .diceBlock > button[data-locked="true"] {
-    --bs-color: rgba(0,0,0,0.6);
-    box-shadow: inset 0 -2px 5px var(--bs-color);
-    background: var(--yellow);
-    color: var(--pink);
-    border: 2px solid var(--pink);
+    box-shadow: inset 0 -2px 5px rgba(0,0,0,0.6);
+    background: #ffc600;
+    color: #D60087;
+    border: 2px solid #D60087;
 }
 
 #rollDiceButton[disabled="true"] {
-    --bs-color: rgba(0,0,0,0.6);
-    box-shadow: inset 0 -2px 5px var(--bs-color);
+    box-shadow: inset 0 -2px 5px rgba(0,0,0,0.6);
 }
 
 /* ----------------------- //.diceArea ----------------------- */
@@ -483,7 +472,7 @@ select[name="scoreSectionSelect"] {
 }
 
 #gameScoreTable .scoreHolder, #gameScoreTable .scoreHeader, #gameScoreTable .catNameHolder {
-    border: 1px var(--grey) solid;
+    border: 1px #e7e7e7 solid;
     border-collapse: collapse;
     padding: 15px;
     font-size: 20px;
@@ -503,7 +492,7 @@ select[name="scoreSectionSelect"] {
 }
 
 #scoreCategoryCol .scoreHeader, div[data-roleClass="upperSum"], div[data-roleClass="upperBonus"], div[data-roleClass="totalScore"] {
-    background-color: var(--blue) !important; 
+    background-color: #0072B9 !important; 
     color: white !important;
 }
 
@@ -516,7 +505,7 @@ select[name="scoreSectionSelect"] {
 }
 
 div[data-currentPlayer="true"] > div[data-roleClass="playerName"] {
-    background: var(--yellow) !important;
+    background: #ffc600 !important;
     color: black !important;
 }
 
