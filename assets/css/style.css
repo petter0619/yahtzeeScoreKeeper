@@ -686,7 +686,7 @@ div[data-currentPlayer="true"] > div.scoreHolder {
 
     #rollDiceSection > button {
         font-size: 0.5em;
-        width: 90%;
+        width: 100%;
     }
 
     #saveRollResultSection > form > button {
@@ -790,10 +790,6 @@ div[data-currentPlayer="true"] > div.scoreHolder {
 
     #rollDiceSection {
         margin: 10px 0 30px 0;
-    }
-
-    #rollDiceSection > button {
-        width: 100%;
     }
 
     /* Score Area */
