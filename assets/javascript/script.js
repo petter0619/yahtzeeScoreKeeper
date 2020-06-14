@@ -63,7 +63,7 @@ function Player(name) {
     this.fullHouse = null;
     this.yahtzee = null;
     this.chance = null;
-}
+};
 
 // ------------------------------ Calculate scoreCategory score method ------------------------------
 Player.prototype.calculateScore = function(scoreCategory) {
@@ -225,7 +225,7 @@ Player.prototype.calculateScore = function(scoreCategory) {
             console.log('calculateScore SWITCH statement was executed, but no matching "case" was found');
             break;
     }
-}
+};
 
 // ------------------------------ Calculate totalScore method ------------------------------
 Player.prototype.totalScore = function() {
@@ -242,7 +242,7 @@ Player.prototype.totalScore = function() {
         return 0;
     }
     return filledScores.map( arrayItem => this.calculateScore(arrayItem[0]) ).reduce( (accumulator, arrayItem) => accumulator + arrayItem ) + (this.upperScore() >= 63 ? 50 : 0);
-}
+};
 
 // ------------------------------ Calculate upperScore method------------------------------
 Player.prototype.upperScore = function() {
@@ -259,7 +259,7 @@ Player.prototype.upperScore = function() {
                 return 0;
     }
     return filledScores.map( arrayItem => this.calculateScore(arrayItem[0]) ).reduce( (accumulator, arrayItem) => accumulator + arrayItem );
-}
+};
 
 /* ------------------------------------------------------------------ */
 /* ---------------------- Function Definitions ---------------------- */
@@ -277,7 +277,7 @@ function toggleMobileMenu() {
         }
     }
     return;
-}
+};
 
 // ----------------> Modal Functions
 // Open modal
@@ -308,7 +308,7 @@ function openModal(event) {
     if(window.innerWidth < 993 && Array.from(event.currentTarget.classList).join('').includes('navLink')) {
         toggleMobileMenu();
     }
-}
+};
 
 // Close modal
 function closeModal(event) {
@@ -322,7 +322,7 @@ function closeModal(event) {
         list.removeEventListener('playersUpdated', displayPlayer); 
         list.removeEventListener('click', deletePlayer);
     }
-}
+};
 
 // ----------------> startPlaying Modal => Add Players List Functions
 
@@ -354,7 +354,7 @@ function handleAddPlayerSubmit(e) {
         startGameButton.setAttribute('style', 'display: block;');
         startGameButton.addEventListener('click', startGame);
     };
-}
+};
 
 function displayPlayer() {
     const html = playersList.map(player => { 
@@ -364,7 +364,7 @@ function displayPlayer() {
         </li>`;
     }).join('');
     list.innerHTML = html;
-}
+};
 
 function deletePlayer(event) {
     // Get the argument ID
@@ -377,7 +377,7 @@ function deletePlayer(event) {
         startGameButton.setAttribute('style', 'display: none;');
         startGameButton.removeEventListener('click', startGame);
     };
-}
+};
 
 // ----------------> Top Navigation Functions
 /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
@@ -388,7 +388,7 @@ function toggleMobileMenu() {
     } else {
         navLinks.style.display = 'block';
     }
-}
+};
 
 // ------------------------------ Start Game Function (aka set up #gameScreen) ------------------------------
 function startGame() {
@@ -443,8 +443,7 @@ function startGame() {
             return;
         }
     });
-    
-}
+};
 
 // ------------------------------ Roll Dice Function ------------------------------
 function handleRollDice(event) {
@@ -489,7 +488,7 @@ function handleRollDice(event) {
     }
     // Update 'X throws left' text
     document.querySelector('#throwsLeftText').textContent = `${4 - rollTurn} roll${ (4-rollTurn === 1 ? '' : 's' ) } left`;
-}
+};
 
 // ------------------------------ Dice Lock Function ------------------------------
 function handleDiceLock(event) {
@@ -507,7 +506,7 @@ function handleDiceLock(event) {
         event.currentTarget.setAttribute('data-locked', 'true');
         event.currentTarget.textContent = 'Unlock';
     }
-}
+};
 
 // ------------------------------ Save Round Result Function ------------------------------
 function handleSaveDiceSubmit(event) {
@@ -582,7 +581,7 @@ function handleSaveDiceSubmit(event) {
 
     // Fire off custom event for resetGameArea function
     saveDiceForm.dispatchEvent(new CustomEvent('diceResultSaved'));
-}
+};
 
 // ------------------------------ Reset Gamescreen for Next Player Function ------------------------------
 function resetGameArea() {
@@ -629,7 +628,7 @@ function resetGameArea() {
     document.querySelector(`[data-playernumber="${currentPlayer}"]`).setAttribute('data-currentplayer','true');
     document.querySelector(`[data-playernumber="${ currentPlayer === 0 ? playerInstanceArray.length - 1 : currentPlayer - 1 }"]`).setAttribute('data-currentplayer','false');
 
-}
+};
 
 function handleGameEnd() {
     // Identify game winner
@@ -649,7 +648,7 @@ function handleGameEnd() {
         console.log(playerCol);
         playerCol.removeAttribute('data-currentplayer');
     });
-}
+};
 
 
 /* --------------------------------------------------------------------------------------------------------- */
