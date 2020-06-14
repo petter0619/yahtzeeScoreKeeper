@@ -263,7 +263,7 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
     margin-top: 0;
 }
 
-.modal-inner div[role="startPlaying"] li {
+.modal-inner div[data-roleClass="startPlaying"] li {
     font-size: 1.5em;
 }
 
@@ -271,7 +271,7 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
     max-width: 100%;
 }
 
-.modal-inner > div[role=yahtzeeRules], .modal-inner > div[role=howSiteWorks] {
+.modal-inner > div[data-roleClass=yahtzeeRules], .modal-inner > div[data-roleClass=howSiteWorks] {
     max-width: 600px;
 }
 
@@ -279,7 +279,7 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
 
 /* -------------------------- startPlaying => addPlayers modal content -------------------------- */
 
-.modal-inner > div[role=startPlaying] {
+.modal-inner > div[data-roleClass=startPlaying] {
     max-width: 550px;
 }
 
@@ -406,7 +406,7 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
     border: 5px solid var(--green);
 }
 
-.diceBlock > button[role="diceLock"] {
+.diceBlock > button[data-roleClass="diceLock"] {
     font-size: 0.5em;
     padding: 0.5rem;
     width: 100px;
@@ -420,7 +420,7 @@ a.button[disabled="true"]:hover, button[disabled="true"]:hover, input[type="butt
     border: 2px solid var(--pink);
 }
 
-button#rollDiceButton[disabled="true"] {
+#rollDiceButton[disabled="true"] {
     --bs-color: rgba(0,0,0,0.6);
     box-shadow: inset 0 -2px 5px var(--bs-color);
 }
@@ -497,12 +497,12 @@ select[name="scoreSectionSelect"] {
     font-weight: 600;
 }
 
-#gameScoreTable div[role="playerName"], #gameScoreTable div.catNameHolder {
+#gameScoreTable div[data-roleClass="playerName"], #gameScoreTable div.catNameHolder {
     background-color: #039bfa;
     color: white;
 }
 
-#scoreCategoryCol .scoreHeader, div[role="upperSum"], div[role="upperBonus"], div[role="totalScore"] {
+#scoreCategoryCol .scoreHeader, div[data-roleClass="upperSum"], div[data-roleClass="upperBonus"], div[data-roleClass="totalScore"] {
     background-color: var(--blue) !important; 
     color: white !important;
 }
@@ -511,11 +511,11 @@ select[name="scoreSectionSelect"] {
     min-width: 150px;
 }
 
-#gameScoreTable div[role="playerName"], #gameScoreTable .scoreHolder {
+#gameScoreTable div[data-roleClass="playerName"], #gameScoreTable .scoreHolder {
     text-align: center;
 }
 
-div[data-currentPlayer="true"] > div[role="playerName"] {
+div[data-currentPlayer="true"] > div[data-roleClass="playerName"] {
     background: var(--yellow) !important;
     color: black !important;
 }
@@ -625,7 +625,7 @@ div[data-currentPlayer="true"] > div.scoreHolder {
         height: 20px;
     }
 
-    #gameScoreTable div[role="playerName"], #scoreCategoryCol .scoreHeader {
+    #gameScoreTable div[data-roleClass="playerName"], #scoreCategoryCol .scoreHeader {
         height: 30px;
     }
 
@@ -663,7 +663,7 @@ div[data-currentPlayer="true"] > div.scoreHolder {
         padding: 1.5rem 0.6rem;
     }
 
-    .modal-inner > div[role=startPlaying], .modal-inner > div[role=yahtzeeRules], .modal-inner > div[role=howSiteWorks]{
+    .modal-inner > div[data-roleClass=startPlaying], .modal-inner > div[data-roleClass=yahtzeeRules], .modal-inner > div[data-roleClass=howSiteWorks]{
         max-width: 90vw;
     }
     
@@ -684,7 +684,7 @@ div[data-currentPlayer="true"] > div.scoreHolder {
         line-height: 80px;
     }
 
-    .diceBlock > button[role="diceLock"] {
+    .diceBlock > button[data-roleClass="diceLock"] {
         width: 80px;
     }
     

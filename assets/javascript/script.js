@@ -24,7 +24,7 @@ var startGameButton = document.querySelector('#startGameButton');
 
 // GameScreen Variables
 var diceHolders = Array.from(document.querySelectorAll('.diceHolder'));
-var diceLockButtons = document.querySelectorAll('button[role="diceLock"]');
+var diceLockButtons = document.querySelectorAll('button[data-roleClass="diceLock"]');
 var rollDiceButton = document.querySelector('#rollDiceButton');
 var saveDiceForm = document.querySelector('.saveRollResult');
 var playerScoreColums = Array.from(document.querySelectorAll('[data-playerNumber]'));
@@ -289,8 +289,8 @@ function openModal(event) {
     modalInner.querySelectorAll(`.modal-inner > div`).forEach(div => div.setAttribute('style', 'display:none;'));
 
     //Show the div that matches the button
-    const buttonRole = event.currentTarget.getAttribute('role');
-    modalInner.querySelector(`div[role=${buttonRole}]`).setAttribute('style', 'display: block;');
+    const buttonRole = event.currentTarget.getAttribute('data-roleClass');
+    modalInner.querySelector(`div[data-roleClass=${buttonRole}]`).setAttribute('style', 'display: block;');
 
     // Add Event Listeners for closing the modal
     modalOuter.addEventListener('click', closeModal);
@@ -424,7 +424,7 @@ function startGame() {
             return;
         }
         // Add playerInstance.name to each respective players scoreColumn header
-        column.querySelector('div[role="playerName"]').textContent = playerInstanceArray[ parseInt(column.dataset.playernumber) ].name;
+        column.querySelector('div[data-roleClass="playerName"]').textContent = playerInstanceArray[ parseInt(column.dataset.playernumber) ].name;
     });
 
     // Replace "startPlaying" with "endGame" in topNav
@@ -542,14 +542,14 @@ function handleSaveDiceSubmit(event) {
     playerInstanceArray[ currentPlayer ][ chosenCategory ] = diceResultArray;
 
     /* ----------------- Update Score Area ----------------- */
-    const divToUpdate = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="${chosenCategory}"]`); // Identify DIV to place score in
+    const divToUpdate = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[data-roleClass="${chosenCategory}"]`); // Identify DIV to place score in
     const score = playerInstanceArray[ currentPlayer ].calculateScore( chosenCategory ); // Calculate score
     divToUpdate.textContent = score; // Place score in correct DIV
 
     // Update totalScore + upperSum + upperBonus
-    const upperScoreCell = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="upperSum"]`);
-    const upperBonusCell = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="upperBonus"]`);
-    const totalScoreCell = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[role="totalScore"]`);
+    const upperScoreCell = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[data-roleClass="upperSum"]`);
+    const upperBonusCell = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[data-roleClass="upperBonus"]`);
+    const totalScoreCell = document.querySelector(`div[data-playerNumber="${currentPlayer}"]`).querySelector(`div[data-roleClass="totalScore"]`);
 
     upperScoreCell.textContent = playerInstanceArray[ currentPlayer ].upperScore(); // upperScore
     upperBonusCell.textContent = (playerInstanceArray[ currentPlayer ].upperScore() >= 63 ? 50 : 0); // upperBonus
