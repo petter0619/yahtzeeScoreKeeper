@@ -72,7 +72,7 @@ Game features:
 If the website was to be developed further some features I would like to add would be:
 * Ability to start a new game with all the current players, without having to re-enter their names in the Add Player modal.
 * Ability to view score sheets for players other than the current player on smaller devices.
-* Replace the current dropdown feature on the ‘Save Result’ form with a custom dropdown menu, since the <select> element cannot be styled.
+* Replace the current dropdown feature on the ‘Save Result’ form with a custom dropdown menu, since the 'SELECT' element cannot be styled.
 * Ability to use the sites scorekeeping functionality separately from the roll dice functionality; allowing players to use the site to keep score whilst rolling real life dice in person.
 * Automatically saving game results in Local Storage to create a “high score” table.
 * Ability to save the progress of ongoing games in Local Storage in case the site needs to be reloaded in the middle of a game, or the game needs to be abandoned before it is completed.
@@ -147,7 +147,7 @@ Other:
 * W3Schools for the code needed to hide the scrollbar in the modals: [https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp](https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp)
 * This Stackoverflow question for how to check if all items in an array are the same: [https://stackoverflow.com/questions/14832603/check-if-all-values-of-array-are-equal](https://stackoverflow.com/questions/14832603/check-if-all-values-of-array-are-equal)
 * This Stackoverflow question for how to make the page reload using Javascript: [https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript](https://stackoverflow.com/questions/3715047/how-to-reload-a-page-using-javascript)
-* This ASPSnippets page for how to reset a dropdown menu (<select>) after ‘submit’: [https://www.aspsnippets.com/Articles/Reset-Clear-DropDownList-selection-selected-value-using-JavaScript-and-jQuery.aspx](https://www.aspsnippets.com/Articles/Reset-Clear-DropDownList-selection-selected-value-using-JavaScript-and-jQuery.aspx)
+* This ASPSnippets page for how to reset a dropdown menu ('SELECT') after ‘submit’: [https://www.aspsnippets.com/Articles/Reset-Clear-DropDownList-selection-selected-value-using-JavaScript-and-jQuery.aspx](https://www.aspsnippets.com/Articles/Reset-Clear-DropDownList-selection-selected-value-using-JavaScript-and-jQuery.aspx)
 * This Stackoverflow question for how to identify the max value in an array/object: [https://stackoverflow.com/questions/4020796/finding-the-max-value-of-an-attribute-in-an-array-of-objects](https://stackoverflow.com/questions/4020796/finding-the-max-value-of-an-attribute-in-an-array-of-objects)
 
 
