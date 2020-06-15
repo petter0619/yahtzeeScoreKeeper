@@ -266,7 +266,7 @@ Player.prototype.upperScore = function() {
 /* ------------------------------------------------------------------ */
 
 // ----------------> Top Navigation Functions
-/* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+/* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */ //Code originally came from W3Schools 
 function toggleMobileMenu() {
     if(window.innerWidth < 993) {
         const navLinks = document.getElementById('navLinks');
@@ -280,7 +280,7 @@ function toggleMobileMenu() {
 };
 
 // ----------------> Modal Functions
-// Open modal
+// Open modal ---- Code originally came from the course Beginner Javascript by Wes Bos (code heavily changed to make it work for this site) 
 function openModal(event) {
     // Show the modal
     modalOuter.classList.add('open');
@@ -310,7 +310,7 @@ function openModal(event) {
     }
 };
 
-// Close modal
+// Close modal ---- Code originally came from the course Beginner Javascript by Wes Bos (code heavily changed to make it work for this site) 
 function closeModal(event) {
     if(event.key === 'Escape' || event.target.className.includes('modal-outer') || event.currentTarget === closeModalIcon) {
         modalOuter.classList.remove('open');
@@ -324,9 +324,9 @@ function closeModal(event) {
     }
 };
 
-// ----------------> startPlaying Modal => Add Players List Functions
+// ----------------> startPlaying Modal => Add Players List Functions ---- Code (for the following 3 functions) originally came from the course Beginner Javascript by Wes Bos  
 
-function handleAddPlayerSubmit(e) {
+function handleAddPlayerSubmit(e) { 
     // Prevent formSubmit from changing URL
     e.preventDefault();
     // Max 6 players to the list
@@ -356,7 +356,7 @@ function handleAddPlayerSubmit(e) {
     };
 };
 
-function displayPlayer() {
+function displayPlayer() { 
     const html = playersList.map(player => { 
         return `<li class="player"> 
             <span class="playerName">${player.name}</span>
@@ -377,17 +377,6 @@ function deletePlayer(event) {
         startGameButton.setAttribute('style', 'display: none;');
         startGameButton.removeEventListener('click', startGame);
     };
-};
-
-// ----------------> Top Navigation Functions
-/* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
-function toggleMobileMenu() {
-    const navLinks = document.getElementById('navLinks');
-    if (navLinks.style.display === 'block') {
-        navLinks.style.display = 'none';
-    } else {
-        navLinks.style.display = 'block';
-    }
 };
 
 // ------------------------------ Start Game Function (aka set up #gameScreen) ------------------------------
