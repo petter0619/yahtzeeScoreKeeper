@@ -252,7 +252,7 @@ Player.prototype.upperScore = function() {
 function toggleMobileMenu() {
     const navLinks = document.getElementById('navLinks');
     if (navLinks.style.display === 'block') {
-        navLinks.style.display = 'none';
+        navLinks.style.display = null;
     } else {
         navLinks.style.display = 'block';
     }
